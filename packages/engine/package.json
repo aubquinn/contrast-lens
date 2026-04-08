@@ -5,10 +5,15 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc -b",
     "typecheck": "tsc -p . --noEmit",
     "test": "vitest run"
+  },
+  "devDependencies": {
+    "jsdom": "^29.0.2"
   }
 }

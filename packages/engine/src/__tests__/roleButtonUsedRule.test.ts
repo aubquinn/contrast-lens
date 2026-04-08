@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { runRules } from "../core";
-import { roleButtonUsedRule } from "./roleButtonUsedRule";
+import { roleButtonUsedRule } from "../rules/roleButtonUsedRule";
 
 describe("roleButtonUsedRule", () => {
   it("returns a warning for a non-native element with role=button", () => {
