@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Contrast Lens",
+  "version": "0.0.1",
+  "description": "High contrast mode accessibility checker",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Contrast Lens"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

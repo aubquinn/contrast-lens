@@ -7,8 +7,11 @@
   "types": "dist/index.d.ts",
   "files": ["dist"],
   "scripts": {
-    "build": "tsc -b",
-    "typecheck": "tsc -p . --noEmit"
+    "build": "npm run build:lib && npm run build:extension",
+    "build:lib": "tsc -b",
+    "build:extension": "cp manifest.json dist/ && cp popup.html dist/ && cp popup.js dist/ && cp background.js dist/ && cp content.js dist/",
+    "typecheck": "tsc -p . --noEmit",
+    "dev": "npm run build:lib -- --watch"
   },
   "dependencies": {
     "@contrast-lens/engine": "file:../engine"
