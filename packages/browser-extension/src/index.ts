@@ -1,4 +1,4 @@
-import { runRules } from '@contrast-lens/engine';
+import { runAllRules, runRules, allRules } from '@contrast-lens/engine';
 
-export { runRules };
+export { runAllRules, runRules, allRules };
 

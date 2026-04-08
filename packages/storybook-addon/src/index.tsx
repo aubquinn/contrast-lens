@@ -1,14 +1,14 @@
 import React from 'react';
 import { addons, types } from '@storybook/addons';
-import { runRules } from '@contrast-lens/engine';
+import { runAllRules } from '@contrast-lens/engine';
 
 const ContrastLensPanel = () => {
   // Get the current story's DOM
   const storyRoot = document.querySelector('#storybook-root');
   if (!storyRoot) return <div>No story root found.</div>;
 
-  // Run rules on the story
-  const findings = runRules(storyRoot, []); // TODO: pass rules
+  // Run all rules on the story
+  const findings = runAllRules(storyRoot);
 
   return (
     <div>
