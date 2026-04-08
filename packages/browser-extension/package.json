@@ -1,0 +1,16 @@
+{
+  "name": "@contrast-lens/browser-extension",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -p . --noEmit"
+  },
+  "dependencies": {
+    "@contrast-lens/engine": "file:../engine"
+  }
+}

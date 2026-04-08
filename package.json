@@ -1,1 +1,21 @@
-
+{
+  "name": "contrast-lens",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "npm --prefix packages/engine run build && npm --prefix packages/browser-extension run build",
+    "test": "npm --prefix packages/engine run test",
+    "typecheck": "npm --prefix packages/engine run typecheck && npm --prefix packages/browser-extension run typecheck",
+    "clean": "rm -rf dist node_modules packages/*/dist"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.7",
+    "vitest": "^4.1.3"
+  }
+}
