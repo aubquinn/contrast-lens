@@ -7,9 +7,9 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "npm --prefix packages/engine run build && npm --prefix packages/browser-extension run build",
+    "build": "npm --prefix packages/engine run build && npm --prefix packages/browser-extension run build && npm --prefix packages/storybook-addon run build",
     "test": "npm --prefix packages/engine run test",
-    "typecheck": "npm --prefix packages/engine run typecheck && npm --prefix packages/browser-extension run typecheck",
+    "typecheck": "npm --prefix packages/engine run typecheck && npm --prefix packages/browser-extension run typecheck && npm --prefix packages/storybook-addon run typecheck",
     "clean": "rm -rf dist node_modules packages/*/dist"
   },
   "devDependencies": {
