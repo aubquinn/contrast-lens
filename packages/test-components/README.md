@@ -6,10 +6,21 @@ A collection of React components designed to test accessibility rules and demons
 
 ### Good Components (Should Pass Accessibility Checks)
 - `GoodButton` - Button with proper visible border
+- `DefaultBrowserButton` - Default browser button with native styling
+- `GoodButtonWithShadow` - Button with visible border using box-shadow
 - `GoodInputButton` - Input button with proper visible border
 
 ### Bad Components (Should Fail Accessibility Checks)
 - `BadButtonNoBorder` - Button with `border: none` (triggers error)
+- `BadButtonWithShadow` - Button with drop shadow but no border (triggers error)
+- `BadButtonDotted` - Button with `border: dotted` (triggers error)
+- `BadButtonDashed` - Button with `border: dashed` (triggers error)
+- `BadButtonDouble` - Button with `border: double` (triggers error)
+- `BadButtonGroove` - Button with `border: groove` (triggers error)
+- `BadButtonRidge` - Button with `border: ridge` (triggers error)
+- `BadButtonInset` - Button with `border: inset` (triggers error)
+- `BadButtonOutset` - Button with `border: outset` (triggers error)
+- `BadButtonHidden` - Button with `border: hidden` (triggers error)
 - `BadCustomButton` - Div with `role="button"` (triggers warning)
 - `BadInputButtonNoBorder` - Input button with no border (triggers error)
 
