@@ -2,13 +2,6 @@ import type { Finding, Rule, RuleContext } from "../core/types";
 
 const visibleBorderStyles = new Set([
   "solid",
-  "dashed",
-  "dotted",
-  "double",
-  "groove",
-  "ridge",
-  "inset",
-  "outset",
 ]);
 
 function hasExplicitNoBorder(styleText: string): boolean {

@@ -32,11 +32,99 @@ describe("buttonNoBorderRule", () => {
     expect(findings).toHaveLength(0);
   });
 
-  it("does not return a warning for input type=button with a visible border", () => {
-    document.body.innerHTML = `<input type="button" style="border: 1px solid black" value="Save" />`;
+  it("returns an error for a button with dotted border", () => {
+    document.body.innerHTML = `<button style="border: 2px dotted black">Save</button>`;
 
     const findings = runRules(document, [buttonNoBorderRule]);
 
-    expect(findings).toHaveLength(0);
+    expect(findings).toHaveLength(1);
+    expect(findings[0]).toMatchObject({
+      ruleId: "button-no-border",
+      severity: "error",
+    });
+  });
+
+  it("returns an error for a button with dashed border", () => {
+    document.body.innerHTML = `<button style="border: 2px dashed black">Save</button>`;
+
+    const findings = runRules(document, [buttonNoBorderRule]);
+
+    expect(findings).toHaveLength(1);
+    expect(findings[0]).toMatchObject({
+      ruleId: "button-no-border",
+      severity: "error",
+    });
+  });
+
+  it("returns an error for a button with double border", () => {
+    document.body.innerHTML = `<button style="border: 4px double black">Save</button>`;
+
+    const findings = runRules(document, [buttonNoBorderRule]);
+
+    expect(findings).toHaveLength(1);
+    expect(findings[0]).toMatchObject({
+      ruleId: "button-no-border",
+      severity: "error",
+    });
+  });
+
+  it("returns an error for a button with groove border", () => {
+    document.body.innerHTML = `<button style="border: 2px groove black">Save</button>`;
+
+    const findings = runRules(document, [buttonNoBorderRule]);
+
+    expect(findings).toHaveLength(1);
+    expect(findings[0]).toMatchObject({
+      ruleId: "button-no-border",
+      severity: "error",
+    });
+  });
+
+  it("returns an error for a button with ridge border", () => {
+    document.body.innerHTML = `<button style="border: 2px ridge black">Save</button>`;
+
+    const findings = runRules(document, [buttonNoBorderRule]);
+
+    expect(findings).toHaveLength(1);
+    expect(findings[0]).toMatchObject({
+      ruleId: "button-no-border",
+      severity: "error",
+    });
+  });
+
+  it("returns an error for a button with inset border", () => {
+    document.body.innerHTML = `<button style="border: 2px inset black">Save</button>`;
+
+    const findings = runRules(document, [buttonNoBorderRule]);
+
+    expect(findings).toHaveLength(1);
+    expect(findings[0]).toMatchObject({
+      ruleId: "button-no-border",
+      severity: "error",
+    });
+  });
+
+  it("returns an error for a button with outset border", () => {
+    document.body.innerHTML = `<button style="border: 2px outset black">Save</button>`;
+
+    const findings = runRules(document, [buttonNoBorderRule]);
+
+    expect(findings).toHaveLength(1);
+    expect(findings[0]).toMatchObject({
+      ruleId: "button-no-border",
+      severity: "error",
+    });
+  });
+
+  it("returns an error for a button with hidden border", () => {
+    document.body.innerHTML = `<button style="border: 2px hidden">Save</button>`;
+
+    const findings = runRules(document, [buttonNoBorderRule]);
+
+    expect(findings).toHaveLength(1);
+    expect(findings[0]).toMatchObject({
+      ruleId: "button-no-border",
+      severity: "error",
+    });
   });
 });
