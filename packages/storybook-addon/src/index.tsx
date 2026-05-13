@@ -12,8 +12,8 @@ const injectHighlightStyles = () => {
   style.id = HIGHLIGHT_STYLE_ID;
   style.textContent = `
     .${HIGHLIGHT_CLASS} {
-      outline: 3px dashed red !important;
-      box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.5) !important;
+      outline: 3px dashed #ff4d4f !important;
+      box-shadow: 0 0 0 4px rgba(255, 77, 79, 0.35) !important;
       position: relative !important;
     }
   `;
@@ -28,17 +28,70 @@ const removeHighlightStyles = () => {
   }
 };
 
-const applyHighlights = (findings: Array<{ element: Element }>) => {
-  findings.forEach((finding) => {
-    finding.element.classList.add(HIGHLIGHT_CLASS);
-  });
-};
-
 const removeHighlights = (findings: Array<{ element: Element }>) => {
   findings.forEach((finding) => {
     finding.element.classList.remove(HIGHLIGHT_CLASS);
   });
 };
+
+const iconButtonBaseStyle: React.CSSProperties = {
+  border: '1px solid #d9d9d9',
+  borderRadius: 8,
+  background: '#fafafa',
+  width: 36,
+  height: 36,
+  padding: 0,
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  cursor: 'pointer',
+  color: '#262626',
+};
+
+const IconButton: React.FC<{
+  label: string;
+  active?: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}> = ({ label, active = false, onClick, children }) => (
+  <button
+    type="button"
+    aria-label={label}
+    title={label}
+    onClick={onClick}
+    style={{
+      ...iconButtonBaseStyle,
+      borderColor: active ? '#096dd9' : '#d9d9d9',
+      background: active ? '#e6f7ff' : '#fafafa',
+    }}
+  >
+    {children}
+  </button>
+);
+
+const IconEye = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+    <path d="M12 5C6.95 5 2.75 8.11 1 12c1.75 3.89 5.95 7 11 7s9.25-3.11 11-7C21.25 8.11 17.05 5 12 5Zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" />
+  </svg>
+);
+
+const IconEyeOff = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+    <path d="M12 6a10.96 10.96 0 0 1 9.43 5.5A11.05 11.05 0 0 1 17 16.64l1.45 1.45A12.99 12.99 0 0 0 24 12c-1.75-3.89-5.95-7-11-7a10.96 10.96 0 0 0-6.4 1.96L8.24 8.6A4.98 4.98 0 0 1 12 6Zm-6.36-2.36L3.28 4l3.61 3.61A4.98 4.98 0 0 0 6 12c0 1.38.56 2.63 1.46 3.54l-1.41 1.41A10.95 10.95 0 0 1 1 12c1.75-3.89 5.95-7 11-7 1.61 0 3.14.36 4.52 1L15.92 7.6A4.98 4.98 0 0 0 12 8c-1.1 0-2.1.36-2.92.96L5.64 3.64ZM12 18a6.99 6.99 0 0 0 5.22-2.19l-1.42-1.42A4.99 4.99 0 0 1 12 16a4.99 4.99 0 0 1-2.9-.96l-1.42 1.42A6.99 6.99 0 0 0 12 18Zm-4.24-2.76 10.4-10.4L18 4.76l-10.4 10.4L7.76 15.24Z" />
+  </svg>
+);
+
+const IconChevronDown = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+    <path d="M7.41 8.58 12 13.17l4.59-4.59L18 10l-6 6-6-6z" />
+  </svg>
+);
+
+const IconChevronUp = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+    <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
+  </svg>
+);
 
 const ContrastLensPanel = () => {
   const [storyRoot, setStoryRoot] = useState<HTMLElement | null>(null);
@@ -57,6 +110,7 @@ const ContrastLensPanel = () => {
   useEffect(() => {
     return () => {
       removeHighlights(findings);
+      removeHighlightStyles();
     };
   }, [findings]);
 
@@ -98,8 +152,8 @@ const ContrastLensPanel = () => {
   }
 
   return (
-    <div>
-      <h2>Contrast Issues</h2>
+    <div style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#262626' }}>
+      <h2 style={{ marginBottom: 16 }}>Contrast Issues</h2>
       {findings.length === 0 ? (
         <p>No issues found.</p>
       ) : (
@@ -108,11 +162,12 @@ const ContrastLensPanel = () => {
             <li
               key={i}
               style={{
-                border: '1px solid #ddd',
-                borderRadius: 8,
-                padding: 12,
-                marginBottom: 12,
+                border: '1px solid #e8e8e8',
+                borderRadius: 12,
+                padding: 14,
+                marginBottom: 16,
                 background: '#fff',
+                boxShadow: '0 1px 2px rgba(15, 23, 42, 0.05)',
               }}
             >
               <div
@@ -121,30 +176,65 @@ const ContrastLensPanel = () => {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   gap: 12,
+                  flexWrap: 'wrap',
                 }}
               >
-                <div>
-                  <strong>{finding.severity.toUpperCase()}</strong>
-                  <div style={{ marginTop: 4 }}>{finding.message}</div>
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                    <span
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: 24,
+                        height: 24,
+                        borderRadius: 9999,
+                        background: finding.severity === 'error' ? '#fff1f0' : '#fff7e6',
+                        color: finding.severity === 'error' ? '#cf1322' : '#d48806',
+                        fontSize: 12,
+                        fontWeight: 700,
+                      }}
+                    >
+                      {finding.severity[0].toUpperCase()}
+                    </span>
+                    <div style={{ minWidth: 0 }}>
+                      <strong style={{ display: 'block', fontSize: 14 }}>{finding.message}</strong>
+                      <span style={{ color: '#525252', fontSize: 12 }}>{finding.ruleId}</span>
+                    </div>
+                  </div>
                 </div>
-                <div style={{ display: 'flex', gap: 8 }}>
-                  <button type="button" onClick={() => toggleHighlight(i)}>
-                    {highlightedIndexes[i] ? 'Hide highlight' : 'Highlight'}
-                  </button>
-                  <button type="button" onClick={() => toggleOpen(i)}>
-                    {openIndexes[i] ? 'Hide details' : 'Show details'}
-                  </button>
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                  <IconButton
+                    label={highlightedIndexes[i] ? 'Hide highlight' : 'Highlight'}
+                    active={highlightedIndexes[i]}
+                    onClick={() => toggleHighlight(i)}
+                  >
+                    {highlightedIndexes[i] ? <IconEyeOff /> : <IconEye />}
+                  </IconButton>
+                  <IconButton
+                    label={openIndexes[i] ? 'Hide details' : 'Show details'}
+                    active={openIndexes[i]}
+                    onClick={() => toggleOpen(i)}
+                  >
+                    {openIndexes[i] ? <IconChevronUp /> : <IconChevronDown />}
+                  </IconButton>
                 </div>
               </div>
               {openIndexes[i] && (
-                <div style={{ marginTop: 12, fontSize: '0.95rem', color: '#333' }}>
-                  <div>
-                    <strong>Rule:</strong> {finding.ruleId}
+                <div style={{ marginTop: 14, fontSize: 13, color: '#424242', lineHeight: 1.5 }}>
+                  <div style={{ marginBottom: 6 }}>
+                    <strong>Element:</strong>{' '}
+                    <span style={{ color: '#111' }}>{finding.element.tagName.toLowerCase()}</span>
+                    {finding.element.id ? <span style={{ color: '#595959' }}>#{finding.element.id}</span> : null}
+                    {finding.element.className ? (
+                      <span style={{ color: '#595959' }}>
+                        .{String(finding.element.className).split(' ').join('.')}
+                      </span>
+                    ) : null}
                   </div>
                   <div>
-                    <strong>Element:</strong> {finding.element.tagName.toLowerCase()}
-                    {finding.element.id ? `#${finding.element.id}` : ''}
-                    {finding.element.className ? `.${String(finding.element.className).split(' ').join('.')}` : ''}
+                    <strong>Path:</strong>{' '}
+                    <span style={{ color: '#111' }}>{finding.element.outerHTML.slice(0, 120)}...</span>
                   </div>
                 </div>
               )}
