@@ -1,5 +1,7 @@
 # Contrast Lens
 
+[![Coverage Status](https://coveralls.io/repos/github/aubquinn/contrast-lens/badge.svg?branch=main)](https://coveralls.io/github/aubquinn/contrast-lens?branch=main)
+
 Contrast Lens is a comprehensive accessibility toolkit that fills a critical gap in web accessibility testing. While traditional tools like Axe Core focus on WCAG guidelines, high contrast mode—a feature used by millions of users—is not covered by WCAG standards. This project provides automated rule checking, browser extensions, and Storybook integration specifically for high contrast mode compliance.
 
 ## Packages
