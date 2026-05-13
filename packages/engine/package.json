@@ -11,9 +11,10 @@
   "scripts": {
     "build": "tsc -b",
     "typecheck": "tsc -p . --noEmit",
-    "test": "vitest run"
+    "test": "vitest run --coverage"
   },
   "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.6",
     "jsdom": "^29.0.2"
   }
 }
