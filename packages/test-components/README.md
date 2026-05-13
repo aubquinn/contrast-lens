@@ -21,7 +21,7 @@ A collection of React components designed to test accessibility rules and demons
 - `BadButtonInset` - Button with `border: inset` (triggers error)
 - `BadButtonOutset` - Button with `border: outset` (triggers error)
 - `BadButtonHidden` - Button with `border: hidden` (triggers error)
-- `BadCustomButton` - Div with `role="button"` (triggers warning)
+- `BadCustomButton` - Div with `role="button"` and visible border (passes border checks)
 - `BadInputButtonNoBorder` - Input button with no border (triggers error)
 
 ## Usage with Storybook Addon

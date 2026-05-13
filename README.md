@@ -13,8 +13,7 @@ The heart of Contrast Lens - contains accessibility rules and evaluation logic.
 - Custom rules for high contrast mode compliance
 
 **Rules Included:**
-- `buttonNoBorderRule` - Buttons must have visible borders (error)
-- `roleButtonUsedRule` - Warns about custom `role="button"` elements
+- `buttonNoBorderRule` - Buttons and custom `role="button"` elements must have visible borders (error)
 
 ### Browser Extension (`packages/browser-extension`)
 A Chrome extension that scans web pages for accessibility issues.
@@ -47,7 +46,7 @@ React components designed to test accessibility rules and demonstrate violations
 **Components:**
 - ✅ `GoodButton` - Properly accessible button
 - ❌ `BadButtonNoBorder` - Button without border (fails)
-- ❌ `BadCustomButton` - Custom role="button" (warns)
+- `BadCustomButton` - Custom role="button" example now uses the button border rule
 
 ## Quick Start
 

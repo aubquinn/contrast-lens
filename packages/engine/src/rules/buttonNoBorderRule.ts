@@ -44,7 +44,8 @@ function getBorderWidthSeverity(style: CSSStyleDeclaration): "error" | "warning"
 
 export const buttonNoBorderRule: Rule = {
   id: "button-no-border",
-  selector: "button, input[type='button'], input[type='submit'], input[type='reset']",
+  selector:
+    "button, input[type='button'], input[type='submit'], input[type='reset'], [role='button']:not(button):not(input)",
   evaluate: (element: Element, context: RuleContext): Finding[] => {
     const style = context.win.getComputedStyle(element);
 

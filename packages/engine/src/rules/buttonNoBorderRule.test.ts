@@ -15,6 +15,26 @@ describe("buttonNoBorderRule", () => {
     });
   });
 
+  it("returns an error for a custom element with role=button and no visible border", () => {
+    document.body.innerHTML = `<div role="button" style="border: none">Save</div>`;
+
+    const findings = runRules(document, [buttonNoBorderRule]);
+
+    expect(findings).toHaveLength(1);
+    expect(findings[0]).toMatchObject({
+      ruleId: "button-no-border",
+      severity: "error",
+    });
+  });
+
+  it("does not return a warning for a custom element with role=button and a visible border", () => {
+    document.body.innerHTML = `<div role="button" style="border: 2px solid black">Save</div>`;
+
+    const findings = runRules(document, [buttonNoBorderRule]);
+
+    expect(findings).toHaveLength(0);
+  });
+
   it("returns an error for a button with zero border width", () => {
     document.body.innerHTML = `<button style="border-width: 0; border-style: none">Save</button>`;
 
