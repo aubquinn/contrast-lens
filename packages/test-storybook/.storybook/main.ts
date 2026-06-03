@@ -1,5 +1,4 @@
 import { dirname, join } from "path";
-import '@contrast-lens/storybook-addon';
 
 export const framework = {
   name: getAbsolutePath("@storybook/react-vite"),
@@ -22,5 +21,6 @@ function getAbsolutePath(value: string): any {
 }
 export const addons = [
   "@chromatic-com/storybook",
-  "@contrast-lens/storybook-addon",
+  // Load local addon source so the manager executes the module during dev
+  join(__dirname, '..', '..', 'storybook-addon', 'src', 'index.tsx'),
 ];
