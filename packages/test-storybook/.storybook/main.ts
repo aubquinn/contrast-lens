@@ -13,9 +13,6 @@ export const stories = [
   join(__dirname, '..', '..', 'test-components', 'src', '**', '*.stories.@(js|jsx|ts|tsx|mdx)')
 ];
 
-// Debug output for resolved stories glob
-console.log('STORYBOOK: stories glob ->', stories);
-
 function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, "package.json")));
 }
