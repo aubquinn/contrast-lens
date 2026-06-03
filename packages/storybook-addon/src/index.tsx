@@ -2,6 +2,12 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { addons, types } from '@storybook/addons';
 import { runAllRules } from '@contrast-lens/engine';
 
+// Debug: confirm addon module is loaded in Storybook manager
+try {
+  // eslint-disable-next-line no-console
+  console.log('contrast-lens: addon module loaded');
+} catch (e) {}
+
 const HIGHLIGHT_CLASS = 'contrast-lens-highlight';
 const HIGHLIGHT_STYLE_ID = 'contrast-lens-highlight-style';
 
