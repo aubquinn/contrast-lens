@@ -20,4 +20,7 @@ console.log('STORYBOOK: stories glob ->', stories);
 function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, "package.json")));
 }
-export const addons = ["@chromatic-com/storybook"];
+export const addons = [
+  "@chromatic-com/storybook",
+  "@contrast-lens/storybook-addon",
+];
