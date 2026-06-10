@@ -18,6 +18,6 @@ function getAbsolutePath(value: string): any {
 }
 export const addons = [
   "@chromatic-com/storybook",
-  // Load local addon source so the manager executes the module during dev
-  join(__dirname, '..', '..', 'storybook-addon', 'src', 'index.tsx'),
+  // Load manager entry from addon source for panel registration
+  join(__dirname, '..', '..', 'storybook-addon', 'src', 'manager.ts'),
 ];

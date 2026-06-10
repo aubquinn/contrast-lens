@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { addons, types } from '@storybook/addons';
 import { runAllRules } from '@contrast-lens/engine';
 
 const HIGHLIGHT_CLASS = 'contrast-lens-highlight';
@@ -95,8 +94,16 @@ const IconChevronUp = () => (
   </svg>
 );
 
-const ContrastLensPanel = () => {
+const getStoryRootFromPreview = (): HTMLElement | null => {
+  const iframe = document.getElementById('storybook-preview-iframe') as HTMLIFrameElement | null;
+  const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
+  if (!doc) return null;
+  return doc.getElementById('storybook-root') || doc.getElementById('storybook-docs');
+};
+
+export const ContrastLensPanel = () => {
   const [storyRoot, setStoryRoot] = useState<HTMLElement | null>(null);
+  const [previewChangeKey, setPreviewChangeKey] = useState(0);
   const [openIndexes, setOpenIndexes] = useState<Record<number, boolean>>({});
   const [highlightedIndexes, setHighlightedIndexes] = useState<Record<number, boolean>>({});
   const [filterSeverity, setFilterSeverity] = useState<'all' | 'error' | 'warning'>('all');
@@ -104,13 +111,41 @@ const ContrastLensPanel = () => {
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
-    setStoryRoot(document.querySelector('#storybook-root'));
+    const updateStoryRoot = () => {
+      const newRoot = getStoryRootFromPreview();
+
+      if (!newRoot) return;
+      setStoryRoot((current) => (current !== newRoot ? newRoot : current));
+    };
+
+    updateStoryRoot();
+
+    const iframe = document.getElementById('storybook-preview-iframe') as HTMLIFrameElement | null;
+    if (!iframe) return undefined;
+
+    const handleLoad = () => {
+      setTimeout(() => {
+        updateStoryRoot();
+        setPreviewChangeKey((prev) => prev + 1);
+      }, 50);
+    };
+    iframe.addEventListener('load', handleLoad);
+
+    const interval = window.setInterval(() => {
+      updateStoryRoot();
+      setPreviewChangeKey((prev) => prev + 1);
+    }, 500);
+
+    return () => {
+      iframe.removeEventListener('load', handleLoad);
+      window.clearInterval(interval);
+    };
   }, []);
 
   const findings = useMemo(() => {
     if (!storyRoot) return [];
     return runAllRules(storyRoot);
-  }, [storyRoot]);
+  }, [storyRoot, previewChangeKey]);
 
   const filteredFindings = useMemo(() => {
     return findings.filter((f) => {
@@ -344,10 +379,4 @@ const ContrastLensPanel = () => {
   );
 };
 
-addons.register('contrast-lens-addon', () => {
-  addons.add('contrast-lens/panel', {
-    type: types.PANEL,
-    title: 'Contrast Lens',
-    render: ContrastLensPanel,
-  });
-});
+export default ContrastLensPanel;
