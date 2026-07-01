@@ -49,5 +49,6 @@ function getAbsolutePath(value: string): any {
 }
 export const addons = [
   "@chromatic-com/storybook",
-  "@contrast-lens/storybook-addon",
+  // Load manager entry from addon source for panel registration
+  join(__dirname, '..', '..', 'storybook-addon', 'src', 'manager.ts'),
 ];

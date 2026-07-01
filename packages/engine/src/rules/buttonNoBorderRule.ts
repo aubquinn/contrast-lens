@@ -58,9 +58,28 @@ function hasVisibleBorder(element: Element, style: CSSStyleDeclaration): boolean
   const left = parseFloat(style.borderLeftWidth || "0");
 
   const hasAnyWidth = top > 0 || right > 0 || bottom > 0 || left > 0;
-  return (
-    hasAnyWidth && visibleBorderStyles.has(style.borderStyle)
-  ) || hasVisibleBoxShadow(style);
+  if (!hasAnyWidth) {
+    return false;
+  }
+
+  // Check shorthand borderStyle first
+  if (style.borderStyle && visibleBorderStyles.has(style.borderStyle)) {
+    return true;
+  }
+
+  // Fall back to checking individual border styles
+  const borderTopStyle = style.borderTopStyle || "";
+  const borderRightStyle = style.borderRightStyle || "";
+  const borderBottomStyle = style.borderBottomStyle || "";
+  const borderLeftStyle = style.borderLeftStyle || "";
+  
+  const hasVisibleStyle = 
+    visibleBorderStyles.has(borderTopStyle) ||
+    visibleBorderStyles.has(borderRightStyle) ||
+    visibleBorderStyles.has(borderBottomStyle) ||
+    visibleBorderStyles.has(borderLeftStyle);
+  
+  return hasVisibleStyle || hasVisibleBoxShadow(style);
 }
 
 function getBorderWidthSeverity(style: CSSStyleDeclaration): "error" | "warning" | null {
