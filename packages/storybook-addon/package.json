@@ -4,6 +4,13 @@
   "private": true,
   "main": "dist/index.js",
   "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.tsx",
+      "require": "./dist/index.js"
+    },
+    "./*": "./src/*"
+  },
   "types": "dist/index.d.ts",
   "files": ["dist"],
   "scripts": {

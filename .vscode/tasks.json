@@ -1,0 +1,12 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Storybook test app",
+      "type": "shell",
+      "command": "npm --prefix packages/test-storybook run storybook",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
