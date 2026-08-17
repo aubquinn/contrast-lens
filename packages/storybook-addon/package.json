@@ -22,7 +22,9 @@
         "typecheck": "tsc -p . --noEmit"
     },
     "dependencies": {
+        "@chakra-ui/react": "^3.36.1",
         "@contrast-lens/engine": "workspace:*",
+        "@heroicons/react": "^2.2.0",
         "react": "catalog:",
         "react-dom": "catalog:"
     },
