@@ -5,7 +5,9 @@ const HIGHLIGHT_CLASS = 'contrast-lens-highlight';
 const HIGHLIGHT_STYLE_ID = 'contrast-lens-highlight-style';
 
 const injectHighlightStyles = () => {
-    if (document.getElementById(HIGHLIGHT_STYLE_ID)) return;
+    if (document.getElementById(HIGHLIGHT_STYLE_ID)) {
+        return;
+    }
 
     const style = document.createElement('style');
     style.id = HIGHLIGHT_STYLE_ID;
@@ -159,8 +161,11 @@ export const ContrastLensPanel = () => {
     const counts = useMemo(() => {
         const totals = { all: findings.length, error: 0, warning: 0 } as Record<string, number>;
         findings.forEach((f) => {
-            if (f.severity === 'error') totals.error++;
-            else totals.warning++;
+            if (f.severity === 'error') {
+                totals.error++;
+            } else {
+                totals.warning++;
+            }
         });
         return totals;
     }, [findings]);

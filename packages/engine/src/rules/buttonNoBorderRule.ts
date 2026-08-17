@@ -1,4 +1,4 @@
-import type { Finding, Rule, RuleContext } from '../core/types';
+import type { Finding, Rule, RuleContext, Severity } from '../core/types';
 
 const visibleBorderStyles = new Set(['solid']);
 
@@ -12,7 +12,6 @@ function hasExplicitNoBorder(styleText: string): boolean {
 }
 
 function hasVisibleBoxShadow(style: CSSStyleDeclaration): boolean {
-    console.log('style:: ', style);
     const boxShadow = style.boxShadow;
     if (!boxShadow || boxShadow === 'none') {
         return false;
@@ -25,7 +24,9 @@ function hasVisibleBoxShadow(style: CSSStyleDeclaration): boolean {
         }
 
         const parts = shadow.split(/\s+/).filter(Boolean);
-        if (parts.length < 4) continue;
+        if (parts.length < 4) {
+            continue;
+        }
 
         const [x, y, blur, spread] = parts;
         if (
@@ -42,9 +43,15 @@ function hasVisibleBoxShadow(style: CSSStyleDeclaration): boolean {
 }
 
 function isElementVisible(element: Element, style: CSSStyleDeclaration): boolean {
-    if (!element.isConnected) return false;
-    if (element.hasAttribute('hidden')) return false;
-    if (element.getAttribute('aria-hidden') === 'true') return false;
+    if (!element.isConnected) {
+        return false;
+    }
+    if (element.hasAttribute('hidden')) {
+        return false;
+    }
+    if (element.getAttribute('aria-hidden') === 'true') {
+        return false;
+    }
     if (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0') {
         return false;
     }
@@ -87,19 +94,23 @@ function hasVisibleBorder(element: Element, style: CSSStyleDeclaration): boolean
     return hasVisibleStyle || hasVisibleBoxShadow(style);
 }
 
-function getBorderWidthSeverity(style: CSSStyleDeclaration): 'error' | 'warning' | null {
+function getBorderWidthSeverity(style: CSSStyleDeclaration): Severity | null {
     const top = parseFloat(style.borderTopWidth || '0');
     const right = parseFloat(style.borderRightWidth || '0');
     const bottom = parseFloat(style.borderBottomWidth || '0');
     const left = parseFloat(style.borderLeftWidth || '0');
 
     const widths = [top, right, bottom, left].filter((w) => w > 0);
-    if (widths.length === 0) return null;
+    if (widths.length === 0) {
+        return null;
+    }
 
     const minWidth = Math.min(...widths);
     const tolerance = 0.001;
 
-    if (minWidth + tolerance < 2) return 'error';
+    if (minWidth + tolerance < 2) {
+        return 'error';
+    }
     return null;
 }
 
