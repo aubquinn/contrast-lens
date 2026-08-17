@@ -5,7 +5,7 @@ const contrastLensAddon = import.meta.resolve('../packages/storybook-addon/prese
 
 const config: StorybookConfig = {
     framework: '@storybook/react-vite',
-    stories: ['../packages/test-storybook/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+    stories: ['../packages/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
     core: {
         builder: '@storybook/builder-vite',
     },

@@ -10,5 +10,6 @@
   "references": [
     { "path": "./packages/engine" },
     { "path": "./packages/browser-extension" }
-  ]
+  ],
+  "types": ["vite/client", "node", "react", "react-dom"]
 }
