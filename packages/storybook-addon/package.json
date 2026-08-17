@@ -4,6 +4,7 @@
     "private": true,
     "main": "dist/index.js",
     "module": "dist/index.js",
+    "type": "module",
     "exports": {
         ".": {
             "import": "./src/index.tsx",
@@ -13,7 +14,8 @@
     },
     "types": "dist/index.d.ts",
     "files": [
-        "dist"
+        "dist",
+        "preset.js"
     ],
     "scripts": {
         "build": "tsc -b",

@@ -1,5 +1,6 @@
 {
   "extends": "./tsconfig.base.json",
+  "noUncheckedSideEffectImports": true,
   "compilerOptions": {
     "composite": true,
     "rootDir": ".",

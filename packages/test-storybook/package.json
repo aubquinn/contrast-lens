@@ -15,6 +15,7 @@
     },
     "devDependencies": {
         "@types/react": "catalog:",
-        "@types/react-dom": "catalog:"
+        "@types/react-dom": "catalog:",
+        "@contrast-lens/storybook-addon": "workspace:*"
     }
 }

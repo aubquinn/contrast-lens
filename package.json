@@ -21,6 +21,7 @@
         "@storybook/addon-vitest": "^10.5.8",
         "@storybook/builder-vite": "^10.5.8",
         "@storybook/react-vite": "^10.5.8",
+        "@contrast-lens/storybook-addon": "workspace:*",
         "@types/node": "^20.14.0",
         "@typescript-eslint/eslint-plugin": "^5.60.1",
         "@typescript-eslint/parser": "^5.60.1",

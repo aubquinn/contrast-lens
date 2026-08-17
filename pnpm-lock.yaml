@@ -23,6 +23,9 @@ importers:
 
   .:
     devDependencies:
+      '@contrast-lens/storybook-addon':
+        specifier: workspace:*
+        version: link:packages/storybook-addon
       '@storybook/addon-a11y':
         specifier: ^10.5.8
         version: 10.5.8(storybook@10.5.8(@types/react@18.3.31)(prettier@3.9.6)(react@18.3.1))
