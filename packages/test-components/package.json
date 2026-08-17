@@ -1,20 +1,24 @@
 {
-  "name": "@contrast-lens/test-components",
-  "version": "0.0.0",
-  "private": true,
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": ["dist", "src"],
-  "scripts": {
-    "build": "tsc -b",
-    "typecheck": "tsc -p . --noEmit"
-  },
-  "dependencies": {
-    "react": "^18.2.0"
-  },
-  "devDependencies": {
-    "@storybook/react": "^8.0.0",
-    "@types/react": "^18.2.0"
-  }
+    "name": "@contrast-lens/test-components",
+    "version": "0.0.0",
+    "private": true,
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "scripts": {
+        "build": "tsc -b",
+        "typecheck": "tsc -p . --noEmit"
+    },
+    "dependencies": {
+        "react": "catalog:",
+        "react-dom": "catalog:"
+    },
+    "devDependencies": {
+        "@types/react": "catalog:",
+        "@types/react-dom": "catalog:"
+    }
 }

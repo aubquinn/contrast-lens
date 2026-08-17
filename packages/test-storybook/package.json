@@ -1,28 +1,20 @@
 {
-  "name": "test-storybook",
-  "private": true,
-  "version": "0.0.0",
-  "scripts": {
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
-  },
-  "dependencies": {
-    "@contrast-lens/storybook-addon": "file:../packages/storybook-addon",
-    "@contrast-lens/test-components": "file:../packages/test-components",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@chromatic-com/storybook": "^3.2.7",
-    "@storybook/addon-essentials": "^8.0.0",
-    "@storybook/addon-interactions": "^8.0.0",
-    "@storybook/addon-links": "^8.0.0",
-    "@storybook/react": "^8.0.0",
-    "@storybook/react-vite": "^8.0.0",
-    "@storybook/test": "^8.0.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "storybook": "^8.0.0",
-    "typescript": "^5.0.0"
-  }
+    "name": "test-storybook",
+    "private": true,
+    "version": "0.0.0",
+    "scripts": {
+        "storybook": "storybook dev --port 6006 --config-dir ../../.storybook",
+        "build-storybook": "storybook build --config-dir ../../.storybook",
+        "storybook:doctor": "storybook doctor --config-dir ../../.storybook"
+    },
+    "dependencies": {
+        "@contrast-lens/storybook-addon": "workspace:*",
+        "@contrast-lens/test-components": "workspace:*",
+        "react": "catalog:",
+        "react-dom": "catalog:"
+    },
+    "devDependencies": {
+        "@types/react": "catalog:",
+        "@types/react-dom": "catalog:"
+    }
 }
