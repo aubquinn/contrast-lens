@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { runAllRules } from '@contrast-lens/engine';
-import { Accordion, ChakraProvider, defaultSystem, Span, Tabs } from '@chakra-ui/react';
+import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
+import { TabContent } from './tabContent';
 
 const getStoryRootFromPreview = (): HTMLElement | null => {
     const iframe = document.getElementById('storybook-preview-iframe') as HTMLIFrameElement | null;
@@ -28,7 +29,9 @@ export const ContrastLensPanel = () => {
         updateStoryRoot();
 
         const iframe = document.getElementById('storybook-preview-iframe') as HTMLIFrameElement | null;
-        if (!iframe) return undefined;
+        if (!iframe) {
+            return undefined;
+        }
 
         const handleLoad = () => {
             setTimeout(() => {
@@ -49,6 +52,7 @@ export const ContrastLensPanel = () => {
         };
     }, []);
 
+    // once storybook root is available, run the rules engine
     const findings = useMemo(() => {
         if (!storyRoot) {
             return [];
@@ -56,6 +60,7 @@ export const ContrastLensPanel = () => {
         return runAllRules(storyRoot);
     }, [storyRoot, previewChangeKey]);
 
+    // filter findings into violations and warnings categories
     const violations = useMemo(() => findings.filter((f) => f.severity === 'error'), [findings]);
     const warnings = useMemo(() => findings.filter((f) => f.severity === 'warning'), [findings]);
 
@@ -64,46 +69,9 @@ export const ContrastLensPanel = () => {
     }
 
     return (
-        <>
-            <ChakraProvider value={defaultSystem}>
-                <Tabs.Root defaultValue="violations" variant="line">
-                    <Tabs.List>
-                        <Tabs.Trigger value="violations">Violations ({violations.length})</Tabs.Trigger>
-                        <Tabs.Trigger value="warnings">Warnings ({warnings.length})</Tabs.Trigger>
-                    </Tabs.List>
-                    <Tabs.Content value="violations">
-                        <Accordion.Root collapsible>
-                            {violations.map((item, index) => (
-                                <Accordion.Item key={index} value={item.ruleId}>
-                                    <Accordion.ItemTrigger>
-                                        <Span flex="1">{item.ruleId}</Span>
-                                        <Accordion.ItemIndicator />
-                                    </Accordion.ItemTrigger>
-                                    <Accordion.ItemContent>
-                                        <Accordion.ItemBody>{item.message}</Accordion.ItemBody>
-                                    </Accordion.ItemContent>
-                                </Accordion.Item>
-                            ))}
-                        </Accordion.Root>
-                    </Tabs.Content>
-                    <Tabs.Content value="warnings">
-                        <Accordion.Root collapsible>
-                            {warnings.map((item, index) => (
-                                <Accordion.Item key={index} value={item.ruleId}>
-                                    <Accordion.ItemTrigger>
-                                        <Span flex="1">{item.ruleId}</Span>
-                                        <Accordion.ItemIndicator />
-                                    </Accordion.ItemTrigger>
-                                    <Accordion.ItemContent>
-                                        <Accordion.ItemBody>{item.message}</Accordion.ItemBody>
-                                    </Accordion.ItemContent>
-                                </Accordion.Item>
-                            ))}
-                        </Accordion.Root>
-                    </Tabs.Content>
-                </Tabs.Root>
-            </ChakraProvider>
-        </>
+        <ChakraProvider value={defaultSystem}>
+            <TabContent violations={violations} warnings={warnings} />
+        </ChakraProvider>
     );
 };
 
