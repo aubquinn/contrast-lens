@@ -143,7 +143,8 @@ export const buttonNoBorderRule: Rule = {
                 {
                     ruleId: 'button-no-border',
                     severity: widthSeverity,
-                    message: 'Button borders must be at least 2px wide for accessibility.',
+                    message:
+                        'Button borders must be at least 2px wide for to remain distinguishable in high contrast mode.',
                     element,
                 },
             ];

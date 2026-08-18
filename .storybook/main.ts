@@ -1,5 +1,4 @@
 import type { StorybookConfig } from '@storybook/react-vite';
-import { fileURLToPath } from 'node:url';
 
 const contrastLensAddon = import.meta.resolve('../packages/storybook-addon/preset.js');
 
