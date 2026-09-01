@@ -18,6 +18,9 @@ const BORDER_HINT = `Keep a 2px transparent border, or restore the border and in
 const BORDER_STYLE_HINT =
     'Use a solid border because it provides the most reliable and distinguishable boundary in forced-colors mode.';
 
+const BORDER_STYLE_WIDTH_HINT =
+    'Use a 2px wide border because it provides the most reliable and distinguishable boundary in forced-colors mode.';
+
 const NATIVE_BUTTON_SELECTOR = "button, input[type='button'], input[type='submit'], input[type='reset']";
 
 export const buttonNoBorderRule: Rule = {
@@ -68,7 +71,7 @@ export const buttonNoBorderRule: Rule = {
                 severity: Severity.ERROR,
                 hint: BORDER_HINT,
                 message:
-                    'Button controls should have a visible border in CSS so they remain distinguishable in forced-colors mode.',
+                    'Button controls should have a border in CSS so they remain distinguishable in forced-colors mode.',
                 element,
             });
             return findings;
@@ -79,7 +82,7 @@ export const buttonNoBorderRule: Rule = {
             findings.push({
                 ruleId: 'button-no-border',
                 severity: widthSeverity,
-                hint: BORDER_HINT,
+                hint: BORDER_STYLE_WIDTH_HINT,
                 message:
                     'Button borders should be at least 2px wide so they remain distinguishable in forced-colors mode.',
                 element,

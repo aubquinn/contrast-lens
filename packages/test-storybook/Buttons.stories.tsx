@@ -22,3 +22,19 @@ export const BadButtonNoBorderStory: Story = {
 export const BadCustomButtonStory: Story = {
   render: () => <BadCustomButton onClick={() => alert('Bad custom button!')}>Bad Custom Button</BadCustomButton>,
 };
+
+export const ThinBorderWarningStory: Story = {
+  name: 'Warning: Border under 2px',
+  render: () => (
+    <button
+      style={{
+        padding: '8px 16px',
+        border: '1px solid pink',
+        background: '#fff',
+        color: '#000',
+      }}
+    >
+      Button with a 1px border
+    </button>
+  ),
+};
