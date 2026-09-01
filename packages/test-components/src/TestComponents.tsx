@@ -36,7 +36,7 @@ export const TestComponents: React.FC = () => (
     <br /><br />
     <BadButtonHidden onClick={() => alert('Bad button hidden clicked!')}>Bad Button Hidden</BadButtonHidden>
     <br /><br />
-    <BadCustomButton onClick={() => alert('Bad custom button clicked!')}>Bad Custom Button (role="button")</BadCustomButton>
+    <BadCustomButton onClick={() => alert('Bad custom button clicked!')}>Bad Custom Button (role=&quot;button&quot;)</BadCustomButton>
     <br /><br />
     <BadInputButtonNoBorder value="Bad Input Button (No Border)" onClick={() => alert('Bad input button clicked!')} />
   </div>
