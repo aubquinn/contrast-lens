@@ -17,6 +17,13 @@ import {
     BadButtonInset,
     BadButtonOutset,
     BadButtonHidden,
+    GoodButtonInteractionStates,
+    BadButtonHoverNoBorder,
+    BadButtonActiveNoBorder,
+    BadButtonFocusNoBorder,
+    BadButtonFocusVisibleNoBorder,
+    BadButtonDisabledNoBorder,
+    BadButtonAriaDisabledNoBorder,
 } from './index';
 
 const meta: Meta<typeof GoodButton> = {
@@ -105,4 +112,39 @@ export const BadInputButtonNoBorderStory: Story = {
     render: () => (
         <BadInputButtonNoBorder value="Bad Input Button (No Border)" onClick={() => alert('Bad input button!')} />
     ),
+};
+
+export const GoodInteractionStatesStory: Story = {
+    name: 'Pass: Safe interaction states',
+    render: () => <GoodButtonInteractionStates />,
+};
+
+export const HoverRemovesBorderStory: Story = {
+    name: 'Error: Hover removes border',
+    render: () => <BadButtonHoverNoBorder />,
+};
+
+export const ActiveRemovesBorderStory: Story = {
+    name: 'Error: Active removes border',
+    render: () => <BadButtonActiveNoBorder />,
+};
+
+export const FocusRemovesBorderStory: Story = {
+    name: 'Error: Focus removes border',
+    render: () => <BadButtonFocusNoBorder />,
+};
+
+export const FocusVisibleRemovesBorderStory: Story = {
+    name: 'Error: Focus-visible removes border',
+    render: () => <BadButtonFocusVisibleNoBorder />,
+};
+
+export const DisabledRemovesBorderStory: Story = {
+    name: 'Error: Disabled removes border',
+    render: () => <BadButtonDisabledNoBorder />,
+};
+
+export const AriaDisabledRemovesBorderStory: Story = {
+    name: 'Error: ARIA-disabled removes border',
+    render: () => <BadButtonAriaDisabledNoBorder />,
 };

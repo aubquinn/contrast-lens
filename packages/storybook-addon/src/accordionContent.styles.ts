@@ -34,7 +34,8 @@ export const createAccordionContentStyles = (theme: StorybookTheme) => {
             flex: '1',
             minWidth: '0',
             gap: '8px',
-            justifyContent: 'flex-start',
+            justifyContent: 'center',
+            alignItems: 'center',
         },
 
         ruleTitle: {

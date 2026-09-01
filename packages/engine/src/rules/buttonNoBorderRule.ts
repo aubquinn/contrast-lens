@@ -2,6 +2,7 @@ import { Severity, type Finding, type Rule, type RuleContext } from '../core/typ
 import { getBorderRemovingStates } from './helpers/getBorderRemovingStates';
 import { getBorderStyleSeverity } from './helpers/getBorderStyleSeverity';
 import { getBorderWidthSeverity } from './helpers/getBorderWidthSeverity';
+import { hasAuthoredBorder } from './helpers/hasAuthoredBorder';
 import { hasVisibleBorder } from './helpers/hasVisibleBorder';
 import { isElementVisible } from './helpers/isElementVisible';
 
@@ -14,6 +15,8 @@ const BORDER_HINT = `Keep a 2px transparent border, or restore the border and in
   .button:disabled, .button[aria-disabled="true"] { border-color: GrayText; color: GrayText; }
 }`;
 
+const NATIVE_BUTTON_SELECTOR = "button, input[type='button'], input[type='submit'], input[type='reset']";
+
 export const buttonNoBorderRule: Rule = {
     id: 'button-no-border',
     selector:
@@ -23,19 +26,6 @@ export const buttonNoBorderRule: Rule = {
 
         if (!isElementVisible(element, style)) {
             return [];
-        }
-
-        if (!hasVisibleBorder(element, style)) {
-            return [
-                {
-                    ruleId: 'button-no-border',
-                    severity: Severity.ERROR,
-                    hint: BORDER_HINT,
-                    message:
-                        'Button controls should have a visible border in CSS so they remain distinguishable in forced-colors mode.',
-                    element,
-                },
-            ];
         }
 
         const stateInspection = getBorderRemovingStates(element, context.doc);
@@ -60,6 +50,25 @@ export const buttonNoBorderRule: Rule = {
                 message: `${stateInspection.blockedStyleSheetCount} ${sheetLabel} blocked from inspection. Hover, active, focus, or disabled border issues may not have been detected.`,
                 element,
             });
+        }
+
+        const usesBrowserDefaultBorder =
+            element.matches(NATIVE_BUTTON_SELECTOR) && !hasAuthoredBorder(element, context.doc);
+
+        if (usesBrowserDefaultBorder) {
+            return findings;
+        }
+
+        if (!hasVisibleBorder(element, style)) {
+            findings.push({
+                ruleId: 'button-no-border',
+                severity: Severity.ERROR,
+                hint: BORDER_HINT,
+                message:
+                    'Button controls should have a visible border in CSS so they remain distinguishable in forced-colors mode.',
+                element,
+            });
+            return findings;
         }
 
         const widthSeverity = getBorderWidthSeverity(style);

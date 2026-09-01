@@ -90,7 +90,7 @@ export const AccordionContent = ({ item, value }: AccordionContentProps) => {
                         </Box>
 
                         <Box {...styles.detailColumn}>
-                            <Box {...styles.detailMessage}>{item.message}</Box>
+                            <Box {...styles.detailMessage}>{item.hint}</Box>
 
                             <HStack {...styles.actions}>
                                 <Button disabled={!domElement} onClick={jumpToElement} {...styles.actionButton}>

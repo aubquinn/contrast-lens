@@ -3,6 +3,24 @@ import { runRules } from '../core';
 import { buttonNoBorderRule } from './buttonNoBorderRule';
 
 describe('buttonNoBorderRule', () => {
+    it('does not warn for a native button using its browser-default border', () => {
+        document.body.innerHTML = `<button>Save</button>`;
+
+        expect(runRules(document, [buttonNoBorderRule])).toHaveLength(0);
+    });
+
+    it('still evaluates a native button border authored in a stylesheet', () => {
+        document.body.innerHTML = `
+            <style>button { border: 2px dotted black; }</style>
+            <button>Save</button>
+        `;
+
+        const findings = runRules(document, [buttonNoBorderRule]);
+
+        expect(findings).toHaveLength(1);
+        expect(findings[0]).toMatchObject({ severity: 'warning' });
+    });
+
     it('returns an error for a button with no border', () => {
         document.body.innerHTML = `<button style="border: none">Save</button>`;
 

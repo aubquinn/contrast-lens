@@ -23,12 +23,14 @@ export const ContrastLensPanel = () => {
             if (!newRoot) {
                 return;
             }
+
             setStoryRoot((current) => (current !== newRoot ? newRoot : current));
         };
 
         updateStoryRoot();
 
         const iframe = document.getElementById('storybook-preview-iframe') as HTMLIFrameElement | null;
+
         if (!iframe) {
             return undefined;
         }

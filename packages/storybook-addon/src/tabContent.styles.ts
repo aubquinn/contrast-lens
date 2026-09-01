@@ -73,7 +73,7 @@ export const createTabContentStyles = (theme: StorybookTheme) => {
         count: {
             size: '20px',
             flexShrink: 0,
-            background: theme.background.hoverable,
+            border: `2px solid ${theme.appBorderColor}`,
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
