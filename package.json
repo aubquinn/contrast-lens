@@ -11,7 +11,7 @@
         "dev": "vite",
         "build": "pnpm --recursive --if-present run build",
         "test": "pnpm --recursive --if-present run test",
-        "typecheck": "pnpm --recursive --if-present run typecheck",
+        "typecheck": "pnpm --filter @contrast-lens/engine run build && pnpm --recursive --if-present run typecheck",
         "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
         "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",

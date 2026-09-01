@@ -29,14 +29,14 @@ jobs:
             - name: Run tests with coverage
               run: pnpm test
 
+            - name: Build packages
+              run: pnpm build
+
             - name: Type-check packages
               run: pnpm typecheck
 
             - name: Lint source
               run: pnpm lint
-
-            - name: Build packages
-              run: pnpm build
 
             - name: Coveralls GitHub Action
               uses: coverallsapp/github-action@v2.3.6

@@ -3,14 +3,17 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 const workspaceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const npmCli = process.env.npm_execpath;
-const npmCommand = npmCli ? process.execPath : 'npm';
-const useShell = !npmCli && process.platform === 'win32';
-const npmArguments = (args) => (npmCli ? [npmCli, ...args] : args);
+const packageManagerCli = process.env.npm_execpath;
+const isJavaScriptCli = packageManagerCli ? /\.[cm]?js$/i.test(packageManagerCli) : false;
+const packageManagerCommand = isJavaScriptCli
+    ? process.execPath
+    : (packageManagerCli ?? (process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm'));
+const useShell = /\.(cmd|bat)$/i.test(packageManagerCommand);
+const packageManagerArguments = (args) => (isJavaScriptCli ? [packageManagerCli, ...args] : args);
 
 const initialBuild = spawnSync(
-    npmCommand,
-    npmArguments(['--prefix', 'packages/storybook-addon', 'run', 'build']),
+    packageManagerCommand,
+    packageManagerArguments(['--prefix', 'packages/storybook-addon', 'run', 'build']),
     {
         cwd: workspaceRoot,
         shell: useShell,
@@ -23,12 +26,12 @@ if (initialBuild.status !== 0) {
 }
 
 const processes = [
-    spawn(npmCommand, npmArguments(['--prefix', 'packages/storybook-addon', 'run', 'dev']), {
+    spawn(packageManagerCommand, packageManagerArguments(['--prefix', 'packages/storybook-addon', 'run', 'dev']), {
         cwd: workspaceRoot,
         shell: useShell,
         stdio: 'inherit',
     }),
-    spawn(npmCommand, npmArguments(['run', 'storybook:serve']), {
+    spawn(packageManagerCommand, packageManagerArguments(['run', 'storybook:serve']), {
         cwd: workspaceRoot,
         shell: useShell,
         stdio: 'inherit',
