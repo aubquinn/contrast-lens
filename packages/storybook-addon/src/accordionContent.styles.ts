@@ -16,7 +16,8 @@ export const createAccordionContentStyles = (theme: StorybookTheme) => {
             minHeight: '42px',
             paddingX: '14px',
             paddingY: '0',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-start',
+            textAlign: 'left',
             color: theme.color.defaultText,
             fontSize: '13px',
 
@@ -32,10 +33,12 @@ export const createAccordionContentStyles = (theme: StorybookTheme) => {
 
         triggerLabel: {
             flex: '1',
+            width: '100%',
             minWidth: '0',
             gap: '8px',
             justifyContent: 'flex-start',
             alignItems: 'center',
+            textAlign: 'left',
         },
 
         ruleTitle: {
@@ -62,6 +65,7 @@ export const createAccordionContentStyles = (theme: StorybookTheme) => {
         },
 
         indicator: {
+            marginLeft: 'auto',
             flexShrink: 0,
             color: theme.textMutedColor,
         },

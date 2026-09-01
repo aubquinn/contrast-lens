@@ -66,7 +66,10 @@ export const createTabContentStyles = (theme: StorybookTheme) => {
         },
 
         content: {
+            height: 'calc(100% - 40px)',
+            overflowY: 'auto',
             padding: '0',
+            scrollbarGutter: 'stable',
         },
     } as const;
 };
