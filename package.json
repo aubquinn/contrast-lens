@@ -1,17 +1,21 @@
 {
     "name": "contrast-lens",
-    "private": false,
+    "private": true,
     "version": "0.0.0",
     "packageManager": "pnpm@11.20.0",
+    "engines": {
+        "node": ">=24.20.0 <25",
+        "pnpm": "11.20.0"
+    },
     "scripts": {
         "dev": "vite",
-        "build": "npm --prefix packages/engine run build && npm --prefix packages/browser-extension run build && npm --prefix packages/storybook-addon run build && npm --prefix packages/test-components run build",
-        "test": "npm --prefix packages/engine run test",
-        "typecheck": "npm --prefix packages/engine run typecheck && npm --prefix packages/browser-extension run typecheck && npm --prefix packages/storybook-addon run typecheck && npm --prefix packages/test-components run typecheck",
+        "build": "pnpm --recursive --if-present run build",
+        "test": "pnpm --recursive --if-present run test",
+        "typecheck": "pnpm --recursive --if-present run typecheck",
         "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
         "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-        "clean": "rm -rf dist node_modules packages/*/dist",
+        "clean": "shx rm -rf dist node_modules packages/*/dist",
         "storybook": "node scripts/dev-storybook.mjs",
         "storybook:serve": "storybook dev --port 6006",
         "build-storybook": "storybook build",

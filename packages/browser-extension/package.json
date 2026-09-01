@@ -9,13 +9,13 @@
         "dist"
     ],
     "scripts": {
-        "build": "npm run build:lib && npm run build:extension",
+        "build": "pnpm run build:lib && pnpm run build:extension",
         "build:lib": "tsc -b",
         "build:extension": "shx cp manifest.json dist/ && shx cp popup.html dist/ && shx cp popup.js dist/ && shx cp background.js dist/ && shx cp content.js dist/",
         "typecheck": "tsc -p . --noEmit",
-        "dev": "npm run build:lib -- --watch"
+        "dev": "pnpm run build:lib -- --watch"
     },
     "dependencies": {
-        "@contrast-lens/engine": "file:../engine"
+        "@contrast-lens/engine": "workspace:*"
     }
 }
