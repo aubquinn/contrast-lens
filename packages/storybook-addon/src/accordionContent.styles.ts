@@ -34,16 +34,21 @@ export const createAccordionContentStyles = (theme: StorybookTheme) => {
             flex: '1',
             minWidth: '0',
             gap: '8px',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
             alignItems: 'center',
         },
 
         ruleTitle: {
+            display: 'inline-flex',
+            alignItems: 'center',
             flexShrink: 0,
             fontWeight: '700',
+            lineHeight: '1',
         },
 
         ruleId: {
+            display: 'inline-flex',
+            alignItems: 'center',
             overflow: 'hidden',
             padding: '0',
             background: 'transparent',
@@ -51,6 +56,7 @@ export const createAccordionContentStyles = (theme: StorybookTheme) => {
             fontFamily: theme.typography.fonts.mono,
             fontSize: '12px',
             fontWeight: '400',
+            lineHeight: '1',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
         },
@@ -134,6 +140,23 @@ export const createAccordionContentStyles = (theme: StorybookTheme) => {
             color: theme.color.defaultText,
             fontSize: '13px',
             lineHeight: '1.5',
+        },
+
+        hintCode: {
+            display: 'block',
+            width: '100%',
+            marginTop: '8px',
+            overflowX: 'auto',
+            padding: '10px 12px',
+            border: '1px solid',
+            borderColor: theme.appBorderColor,
+            borderRadius: '4px',
+            background: theme.background.app,
+            color: theme.color.defaultText,
+            fontFamily: theme.typography.fonts.mono,
+            fontSize: '12px',
+            lineHeight: '1.5',
+            whiteSpace: 'pre',
         },
 
         actions: {

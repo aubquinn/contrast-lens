@@ -57,34 +57,12 @@ export const createTabContentStyles = (theme: StorybookTheme) => {
                     height: '2px',
                     background: activeColor,
                 },
-
-                '& .tab-count': {
-                    borderColor: 'rgb(71, 157, 255)',
-                    background: 'rgb(35, 57, 82)',
-                    color: 'white',
-                },
             },
 
             _focusVisible: {
                 outline: `2px solid ${activeColor}`,
                 outlineOffset: '-2px',
             },
-        },
-
-        count: {
-            width: '20px',
-            height: '20px',
-            minWidth: '20px',
-            display: 'inline-grid',
-            placeItems: 'center',
-            flexShrink: 0,
-            border: `2px solid ${theme.appBorderColor}`,
-            padding: '0',
-            textAlign: 'center',
-            color: inactiveColor,
-            fontSize: '11px',
-            fontWeight: '700',
-            lineHeight: 'normal',
         },
 
         content: {

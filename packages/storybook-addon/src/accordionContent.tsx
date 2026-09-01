@@ -52,6 +52,8 @@ export const AccordionContent = ({ item, value }: AccordionContentProps) => {
     const elementMarkup = domElement?.outerHTML ?? String(rawElement);
 
     const selector = domElement ? getSelector(domElement) : 'Selector unavailable';
+    const [hintText, ...hintCodeLines] = item.hint?.split('\n') ?? [];
+    const hintCode = hintCodeLines.join('\n').trim();
 
     const jumpToElement = () => {
         domElement?.scrollIntoView({
@@ -90,7 +92,17 @@ export const AccordionContent = ({ item, value }: AccordionContentProps) => {
                         </Box>
 
                         <Box {...styles.detailColumn}>
-                            <Box {...styles.detailMessage}>{item.hint}</Box>
+                            {item.hint && (
+                                <Box {...styles.detailMessage}>
+                                    <Box>{hintText}</Box>
+
+                                    {hintCode && (
+                                        <Code as="pre" {...styles.hintCode}>
+                                            {hintCode}
+                                        </Code>
+                                    )}
+                                </Box>
+                            )}
 
                             <HStack {...styles.actions}>
                                 <Button disabled={!domElement} onClick={jumpToElement} {...styles.actionButton}>

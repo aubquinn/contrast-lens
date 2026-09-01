@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Finding } from '@contrast-lens/engine';
-import { Accordion, Circle, Tabs } from '@chakra-ui/react';
+import { Accordion, Tabs } from '@chakra-ui/react';
+import { Badge } from 'storybook/internal/components';
 import { useTheme } from 'storybook/theming';
 
 import { AccordionContent } from './accordionContent';
@@ -14,22 +15,28 @@ export type TabContentProps = {
 export const TabContent = ({ violations, warnings }: TabContentProps) => {
     const theme = useTheme();
     const styles = createTabContentStyles(theme);
+    const [activeTab, setActiveTab] = useState('violations');
 
     return (
-        <Tabs.Root defaultValue="violations" variant="plain" {...styles.root}>
+        <Tabs.Root
+            value={activeTab}
+            onValueChange={({ value }) => setActiveTab(value)}
+            variant="plain"
+            {...styles.root}
+        >
             <Tabs.List {...styles.list}>
                 <Tabs.Trigger value="violations" {...styles.trigger}>
                     Violations
-                    <Circle className="tab-count" {...styles.count}>
+                    <Badge compact status={activeTab === 'violations' ? 'active' : 'neutral'}>
                         {violations.length}
-                    </Circle>
+                    </Badge>
                 </Tabs.Trigger>
 
                 <Tabs.Trigger value="warnings" {...styles.trigger}>
                     Warnings
-                    <Circle className="tab-count" {...styles.count}>
+                    <Badge compact status={activeTab === 'warnings' ? 'active' : 'neutral'}>
                         {warnings.length}
-                    </Circle>
+                    </Badge>
                 </Tabs.Trigger>
             </Tabs.List>
 
