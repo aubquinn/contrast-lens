@@ -19,6 +19,7 @@
     ],
     "scripts": {
         "build": "tsc -b",
+        "dev": "tsc -b --watch --preserveWatchOutput",
         "typecheck": "tsc -p . --noEmit"
     },
     "dependencies": {

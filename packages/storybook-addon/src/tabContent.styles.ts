@@ -28,7 +28,7 @@ export const createTabContentStyles = (theme: StorybookTheme) => {
         trigger: {
             position: 'relative',
             minHeight: '40px',
-            paddingX: '12px',
+            paddingX: '16px',
             gap: '6px',
             border: '0',
             borderRadius: '0',
@@ -59,7 +59,8 @@ export const createTabContentStyles = (theme: StorybookTheme) => {
                 },
 
                 '& .tab-count': {
-                    background: activeColor,
+                    borderColor: 'rgb(71, 157, 255)',
+                    background: 'rgb(35, 57, 82)',
                     color: 'white',
                 },
             },
@@ -71,16 +72,19 @@ export const createTabContentStyles = (theme: StorybookTheme) => {
         },
 
         count: {
-            size: '20px',
+            width: '20px',
+            height: '20px',
+            minWidth: '20px',
+            display: 'inline-grid',
+            placeItems: 'center',
             flexShrink: 0,
             border: `2px solid ${theme.appBorderColor}`,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
+            padding: '0',
+            textAlign: 'center',
             color: inactiveColor,
             fontSize: '11px',
             fontWeight: '700',
-            lineHeight: '1',
+            lineHeight: 'normal',
         },
 
         content: {

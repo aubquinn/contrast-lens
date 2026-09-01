@@ -12,7 +12,8 @@
         "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
         "clean": "rm -rf dist node_modules packages/*/dist",
-        "storybook": "storybook dev --port 6006",
+        "storybook": "node scripts/dev-storybook.mjs",
+        "storybook:serve": "storybook dev --port 6006",
         "build-storybook": "storybook build",
         "storybook:doctor": "storybook doctor"
     },

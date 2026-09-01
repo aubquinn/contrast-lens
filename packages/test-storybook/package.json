@@ -3,7 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "scripts": {
-        "storybook": "storybook dev --port 6006 --config-dir ../../.storybook",
+        "storybook": "node ../../scripts/dev-storybook.mjs",
         "build-storybook": "storybook build --config-dir ../../.storybook",
         "storybook:doctor": "storybook doctor --config-dir ../../.storybook"
     },
