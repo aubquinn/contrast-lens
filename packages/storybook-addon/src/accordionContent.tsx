@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Finding } from '@contrast-lens/engine';
 import { Accordion, Box, Button, Code, HStack, List, Span } from '@chakra-ui/react';
+import { EyeIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useTheme } from 'storybook/theming';
 
 import { createAccordionContentStyles } from './accordionContent.styles';
@@ -45,6 +46,8 @@ const getSelector = (element: Element) => {
 export const AccordionContent = ({ item, value }: AccordionContentProps) => {
     const theme = useTheme();
     const styles = createAccordionContentStyles(theme);
+    const [isHighlighted, setIsHighlighted] = useState(false);
+    const removeOverlayRef = useRef<(() => void) | null>(null);
 
     const rawElement: unknown = item.element;
     const domElement = isElementLike(rawElement) ? rawElement : undefined;
@@ -55,11 +58,82 @@ export const AccordionContent = ({ item, value }: AccordionContentProps) => {
     const [hintText, ...hintCodeLines] = item.hint?.split('\n') ?? [];
     const hintCode = hintCodeLines.join('\n').trim();
 
+    const removeOverlay = () => {
+        removeOverlayRef.current?.();
+        removeOverlayRef.current = null;
+    };
+
+    const removeHighlight = () => {
+        removeOverlay();
+        setIsHighlighted(false);
+    };
+
+    useEffect(
+        () => () => {
+            removeOverlay();
+        },
+        [domElement],
+    );
+
     const jumpToElement = () => {
-        domElement?.scrollIntoView({
-            behavior: 'smooth',
+        if (!domElement) {
+            return;
+        }
+
+        removeOverlay();
+        domElement.scrollIntoView({
+            behavior: 'auto',
             block: 'center',
         });
+
+        const previewDocument = domElement.ownerDocument;
+        const previewWindow = previewDocument.defaultView;
+        const overlay = previewDocument.createElement('div');
+        const overlayGap = 4;
+        const overlayBorderWidth = 4;
+        const overlayOffset = overlayGap + overlayBorderWidth;
+
+        overlay.setAttribute('data-contrast-lens-highlight', 'true');
+        Object.assign(overlay.style, {
+            position: 'fixed',
+            pointerEvents: 'none',
+            zIndex: '2147483647',
+            border: `${overlayBorderWidth}px solid red`,
+            boxSizing: 'border-box',
+            background: 'transparent',
+        });
+
+        const positionOverlay = () => {
+            if (!domElement.isConnected) {
+                removeOverlay();
+                return;
+            }
+
+            const rect = domElement.getBoundingClientRect();
+            overlay.style.top = `${rect.top - overlayOffset}px`;
+            overlay.style.left = `${rect.left - overlayOffset}px`;
+            overlay.style.width = `${rect.width + overlayOffset * 2}px`;
+            overlay.style.height = `${rect.height + overlayOffset * 2}px`;
+        };
+
+        previewDocument.body.appendChild(overlay);
+        positionOverlay();
+
+        previewWindow?.addEventListener('resize', positionOverlay);
+        previewWindow?.addEventListener('scroll', positionOverlay, true);
+
+        const resizeObserver = previewWindow?.ResizeObserver ? new previewWindow.ResizeObserver(positionOverlay) : null;
+        resizeObserver?.observe(domElement);
+
+        removeOverlayRef.current = () => {
+            previewWindow?.removeEventListener('resize', positionOverlay);
+            previewWindow?.removeEventListener('scroll', positionOverlay, true);
+            resizeObserver?.disconnect();
+            overlay.remove();
+        };
+
+        previewWindow?.requestAnimationFrame(positionOverlay);
+        setIsHighlighted(true);
     };
 
     return (
@@ -105,8 +179,18 @@ export const AccordionContent = ({ item, value }: AccordionContentProps) => {
                             )}
 
                             <HStack {...styles.actions}>
-                                <Button disabled={!domElement} onClick={jumpToElement} {...styles.actionButton}>
-                                    Jump to element
+                                <Button
+                                    disabled={!domElement}
+                                    aria-pressed={isHighlighted}
+                                    onClick={isHighlighted ? removeHighlight : jumpToElement}
+                                    {...styles.actionButton}
+                                >
+                                    {isHighlighted ? (
+                                        <XMarkIcon aria-hidden="true" {...styles.actionIcon} />
+                                    ) : (
+                                        <EyeIcon aria-hidden="true" {...styles.actionIcon} />
+                                    )}
+                                    {isHighlighted ? 'Remove highlight' : 'Jump to element'}
                                 </Button>
                             </HStack>
 

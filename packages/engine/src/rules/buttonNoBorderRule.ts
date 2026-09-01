@@ -15,6 +15,9 @@ const BORDER_HINT = `Keep a 2px transparent border, or restore the border and in
   .button:disabled, .button[aria-disabled="true"] { border-color: GrayText; color: GrayText; }
 }`;
 
+const BORDER_STYLE_HINT =
+    'Use a solid border because it provides the most reliable and distinguishable boundary in forced-colors mode.';
+
 const NATIVE_BUTTON_SELECTOR = "button, input[type='button'], input[type='submit'], input[type='reset']";
 
 export const buttonNoBorderRule: Rule = {
@@ -88,7 +91,7 @@ export const buttonNoBorderRule: Rule = {
             findings.push({
                 ruleId: 'button-no-border',
                 severity: styleSeverity,
-                hint: BORDER_HINT,
+                hint: BORDER_STYLE_HINT,
                 message:
                     'Solid button borders are preferred because other border styles can be less distinct in forced-colors mode.',
                 element,

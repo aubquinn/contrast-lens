@@ -153,6 +153,9 @@ importers:
       '@types/react-dom':
         specifier: 'catalog:'
         version: 18.3.7(@types/react@18.3.31)
+      vite:
+        specifier: ^8.0.7
+        version: 8.2.1(@types/node@20.19.43)(jiti@2.7.0)(sass@1.102.0)
 
   packages/test-components:
     dependencies:

@@ -173,6 +173,7 @@ export const createAccordionContentStyles = (theme: StorybookTheme) => {
             height: '28px',
             minWidth: 'auto',
             paddingX: '10px',
+            gap: '5px',
             border: '1px solid',
             borderColor: theme.appBorderColor,
             borderRadius: '4px',
@@ -184,6 +185,12 @@ export const createAccordionContentStyles = (theme: StorybookTheme) => {
             _hover: {
                 background: theme.background.hoverable,
             },
+        },
+
+        actionIcon: {
+            width: '14px',
+            height: '14px',
+            flexShrink: 0,
         },
 
         detailCode: {

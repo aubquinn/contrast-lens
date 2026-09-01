@@ -18,8 +18,8 @@
         "preset.js"
     ],
     "scripts": {
-        "build": "tsc -b",
-        "dev": "tsc -b --watch --preserveWatchOutput",
+        "build": "tsc -b && vite build --config vite.config.ts",
+        "dev": "vite build --config vite.config.ts --watch",
         "typecheck": "tsc -p . --noEmit"
     },
     "dependencies": {
@@ -31,6 +31,7 @@
     },
     "devDependencies": {
         "@types/react": "catalog:",
-        "@types/react-dom": "catalog:"
+        "@types/react-dom": "catalog:",
+        "vite": "^8.0.7"
     }
 }
