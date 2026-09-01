@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { GoodButton, BadButtonNoBorder, BadCustomButton } from '@contrast-lens/test-components';
 
