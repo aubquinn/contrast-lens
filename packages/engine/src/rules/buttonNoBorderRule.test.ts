@@ -195,4 +195,80 @@ describe('buttonNoBorderRule', () => {
             severity: 'warning',
         });
     });
+
+    it.each([
+        [':hover', 'hover'],
+        [':active', 'active'],
+        [':focus', 'focus'],
+        [':focus-visible', 'focus-visible'],
+        [':disabled', 'disabled'],
+        ['[aria-disabled="true"]', 'aria-disabled'],
+    ])('returns an error when %s removes the border', (stateSelector, stateName) => {
+        document.body.innerHTML = `
+            <style>.state-button${stateSelector} { border: none; }</style>
+            <button class="state-button" style="border: 2px solid transparent">Save</button>
+        `;
+
+        const findings = runRules(document, [buttonNoBorderRule]);
+
+        expect(findings).toHaveLength(1);
+        expect(findings[0]).toMatchObject({
+            ruleId: 'button-no-border',
+            severity: 'error',
+        });
+        expect(findings[0]?.message).toContain(stateName);
+    });
+
+    it('detects a border removed by a nested forced-colors rule', () => {
+        document.body.innerHTML = `
+            <style>
+                @media (forced-colors: active) {
+                    .state-button:hover { border-width: 0; }
+                }
+            </style>
+            <button class="state-button" style="border: 2px solid transparent">Save</button>
+        `;
+
+        const findings = runRules(document, [buttonNoBorderRule]);
+
+        expect(findings[0]).toMatchObject({ severity: 'error' });
+        expect(findings[0]?.message).toContain('hover');
+    });
+
+    it('does not report state rules that preserve the border', () => {
+        document.body.innerHTML = `
+            <style>.state-button:hover { border-color: Highlight; }</style>
+            <button class="state-button" style="border: 2px solid transparent">Save</button>
+        `;
+
+        expect(runRules(document, [buttonNoBorderRule])).toHaveLength(0);
+    });
+
+    it('warns when a stylesheet blocks interaction-state inspection', () => {
+        const element = document.body.appendChild(document.createElement('button'));
+        element.style.border = '2px solid transparent';
+
+        const blockedStyleSheet = {} as CSSStyleSheet;
+        Object.defineProperty(blockedStyleSheet, 'cssRules', {
+            get: () => {
+                throw new DOMException('Blocked by the same-origin policy', 'SecurityError');
+            },
+        });
+        const blockedDocument = {
+            styleSheets: [blockedStyleSheet],
+        } as unknown as Document;
+
+        const findings = buttonNoBorderRule.evaluate(element, {
+            root: document,
+            doc: blockedDocument,
+            win: window,
+        });
+
+        expect(findings).toHaveLength(1);
+        expect(findings[0]).toMatchObject({
+            severity: 'warning',
+        });
+        expect(findings[0]?.message).toContain('1 stylesheet was blocked');
+        expect(findings[0]?.message).toContain('may not have been detected');
+    });
 });

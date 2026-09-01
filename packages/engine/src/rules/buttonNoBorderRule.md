@@ -2,7 +2,9 @@
 
 Button controls need a boundary that remains distinguishable when Windows forced-colors mode replaces authored colors and removes box shadows.
 
-The rule evaluates the button's current computed border. It cannot activate pseudo-classes or prove that stylesheet rules for `:hover`, `:active`, or `:focus-visible` are present, so those states must also be reviewed manually.
+The rule evaluates the button's current computed border and inspects accessible stylesheet rules for borders explicitly removed in `:hover`, `:active`, `:focus`, `:focus-visible`, `:disabled`, and `[aria-disabled='true']` states.
+
+State inspection is static: it cannot activate pseudo-classes or fully reproduce the CSS cascade. Cross-origin stylesheets may also deny CSSOM access. When this happens, the rule produces a warning that its interaction-state results may be incomplete. Treat state findings as evidence of an explicit border reset, and still review the final rendered states manually.
 
 ## Reliable button boundaries
 
@@ -122,7 +124,7 @@ Keeping a transparent border is the simplest option. Components that remove thei
 }
 ```
 
-The rule evaluates the base computed border only. Confirm the following states manually:
+The rule detects common explicit border resets in accessible stylesheets. Confirm the following states manually as well:
 
 - The boundary remains visible at rest.
 - Hover and active states remain distinguishable without relying only on subtle color changes.
