@@ -18,7 +18,7 @@ export function getBorderWidthSeverity(style: CSSStyleDeclaration): Severity | n
     const minWidth = Math.min(...widths);
 
     if (minWidth + BORDER_WIDTH_TOLERANCE_PX < MINIMUM_BORDER_WIDTH_PX) {
-        return Severity.ERROR;
+        return Severity.WARNING;
     }
 
     return null;

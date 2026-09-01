@@ -1,5 +1,6 @@
-import { hasExplicitNoBorder } from "./hasExplicitNoBoarder";
-import { hasVisibleBoxShadow } from "./hasVisibleBoxShadow";
+import { hasExplicitNoBorder } from './hasExplicitNoBoarder';
+
+const RENDERED_BORDER_STYLES = new Set(['solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset']);
 
 export function hasVisibleBorder(element: Element, style: CSSStyleDeclaration): boolean {
     const styleText = (element.getAttribute('style') || '').toLowerCase();
@@ -7,8 +8,6 @@ export function hasVisibleBorder(element: Element, style: CSSStyleDeclaration): 
     if (hasExplicitNoBorder(styleText)) {
         return false;
     }
-
-    const visibleBorderStyles = new Set(['solid']);
 
     const top = parseFloat(style.borderTopWidth || '0');
     const right = parseFloat(style.borderRightWidth || '0');
@@ -22,7 +21,7 @@ export function hasVisibleBorder(element: Element, style: CSSStyleDeclaration): 
     }
 
     // Check shorthand borderStyle first
-    if (style.borderStyle && visibleBorderStyles.has(style.borderStyle)) {
+    if (style.borderStyle && RENDERED_BORDER_STYLES.has(style.borderStyle)) {
         return true;
     }
 
@@ -33,10 +32,10 @@ export function hasVisibleBorder(element: Element, style: CSSStyleDeclaration): 
     const borderLeftStyle = style.borderLeftStyle || '';
 
     const hasVisibleStyle =
-        visibleBorderStyles.has(borderTopStyle) ||
-        visibleBorderStyles.has(borderRightStyle) ||
-        visibleBorderStyles.has(borderBottomStyle) ||
-        visibleBorderStyles.has(borderLeftStyle);
+        RENDERED_BORDER_STYLES.has(borderTopStyle) ||
+        RENDERED_BORDER_STYLES.has(borderRightStyle) ||
+        RENDERED_BORDER_STYLES.has(borderBottomStyle) ||
+        RENDERED_BORDER_STYLES.has(borderLeftStyle);
 
-    return hasVisibleStyle || hasVisibleBoxShadow(style);
+    return hasVisibleStyle;
 }

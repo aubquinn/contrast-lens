@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { Severity } from '../../core/types';
+import { getBorderStyleSeverity } from './getBorderStyleSeverity';
 import { getBorderWidthSeverity } from './getBorderWidthSeverity';
 import { hasExplicitNoBorder } from './hasExplicitNoBoarder';
 import { hasVisibleBorder } from './hasVisibleBorder';
@@ -27,7 +28,7 @@ describe('getBorderWidthSeverity', () => {
         ).toBeNull();
     });
 
-    it('returns an error when any positive border is below the minimum width', () => {
+    it('returns a warning when any positive border is below the preferred width', () => {
         expect(
             getBorderWidthSeverity(
                 createStyle({
@@ -37,7 +38,7 @@ describe('getBorderWidthSeverity', () => {
                     borderLeftWidth: '2px',
                 }),
             ),
-        ).toBe(Severity.ERROR);
+        ).toBe(Severity.WARNING);
     });
 
     it('accepts positive borders at or above the minimum width', () => {
@@ -55,6 +56,27 @@ describe('getBorderWidthSeverity', () => {
 
     it('allows floating-point values within the comparison tolerance', () => {
         expect(getBorderWidthSeverity(createStyle({ borderTopWidth: '1.9995px' }))).toBeNull();
+    });
+});
+
+describe('getBorderStyleSeverity', () => {
+    it('accepts a solid border', () => {
+        expect(getBorderStyleSeverity(createStyle({ borderStyle: 'solid' }))).toBeNull();
+    });
+
+    it.each(['dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset'])(
+        'warns for the less ideal %s border style',
+        (borderStyle) => {
+            expect(getBorderStyleSeverity(createStyle({ borderStyle }))).toBe(Severity.WARNING);
+        },
+    );
+
+    it('checks individual border styles', () => {
+        expect(getBorderStyleSeverity(createStyle({ borderLeftStyle: 'dashed' }))).toBe(Severity.WARNING);
+    });
+
+    it('returns an error when no rendered border style is present', () => {
+        expect(getBorderStyleSeverity(createStyle({ borderStyle: 'none' }))).toBe(Severity.ERROR);
     });
 });
 
@@ -127,17 +149,16 @@ describe('hasVisibleBorder', () => {
         expect(hasVisibleBorder(document.createElement('button'), style)).toBe(true);
     });
 
-    it('uses a visible box shadow when the positive border is not solid', () => {
-        const style = createStyle({
-            borderTopWidth: '2px',
-            borderTopStyle: 'dotted',
-            boxShadow: '0 0 0 2px black',
-        });
-        expect(hasVisibleBorder(document.createElement('button'), style)).toBe(true);
-    });
+    it.each(['dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset'])(
+        'recognizes a rendered %s border',
+        (borderLeftStyle) => {
+            const style = createStyle({ borderLeftWidth: '2px', borderLeftStyle });
+            expect(hasVisibleBorder(document.createElement('button'), style)).toBe(true);
+        },
+    );
 
-    it('rejects a non-solid border without a visible box shadow', () => {
-        const style = createStyle({ borderLeftWidth: '2px', borderLeftStyle: 'dashed' });
+    it('rejects a box shadow without a rendered border', () => {
+        const style = createStyle({ boxShadow: '0 0 0 2px black' });
         expect(hasVisibleBorder(document.createElement('button'), style)).toBe(false);
     });
 });
