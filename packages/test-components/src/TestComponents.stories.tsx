@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { TestComponents } from './TestComponents';
+import { TestComponents } from './TestComponents.js';
 
 const meta: Meta<typeof TestComponents> = {
     title: 'Test Components',

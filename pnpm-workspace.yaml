@@ -8,6 +8,7 @@ allowBuilds:
     unrs-resolver: true
 
 catalog:
+    '@chakra-ui/react': ^3.36.1
     '@storybook/addon-a11y': ^10.5.8
     '@storybook/addon-vitest': ^10.5.8
     '@storybook/builder-vite': ^10.5.8

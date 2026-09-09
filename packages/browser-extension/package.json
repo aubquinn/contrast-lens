@@ -1,9 +1,13 @@
 {
     "name": "@contrast-lens/browser-extension",
     "version": "0.0.0",
-    "private": true,
-    "main": "dist/index.js",
-    "module": "dist/index.js",
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        }
+    },
     "types": "dist/index.d.ts",
     "files": [
         "dist"

@@ -1,4 +1,4 @@
-import { hasExplicitNoBorder } from './hasExplicitNoBoarder';
+import { hasExplicitNoBorder } from './hasExplicitNoBoarder.js';
 
 const RENDERED_BORDER_STYLES = new Set(['solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset']);
 

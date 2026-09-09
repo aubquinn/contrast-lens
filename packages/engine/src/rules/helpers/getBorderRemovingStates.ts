@@ -1,4 +1,4 @@
-import { hasExplicitNoBorder } from './hasExplicitNoBoarder';
+import { hasExplicitNoBorder } from './hasExplicitNoBoarder.js';
 
 const STATE_PATTERNS = [
     { name: 'focus-visible', pattern: /:focus-visible\b/g },

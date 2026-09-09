@@ -6,6 +6,9 @@ settings:
 
 catalogs:
   default:
+    '@chakra-ui/react':
+      specifier: ^3.36.1
+      version: 3.36.1
     '@storybook/addon-a11y':
       specifier: ^10.5.8
       version: 10.5.8
@@ -178,7 +181,7 @@ importers:
   packages/storybook-addon:
     dependencies:
       '@chakra-ui/react':
-        specifier: ^3.36.1
+        specifier: 'catalog:'
         version: 3.36.1(@emotion/react@11.14.0(@types/react@18.3.31)(react@18.3.1)(supports-color@8.1.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@contrast-lens/engine':
         specifier: workspace:*

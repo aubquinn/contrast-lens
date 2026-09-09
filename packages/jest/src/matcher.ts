@@ -1,6 +1,6 @@
 import type { Finding } from "@contrast-lens/engine";
 import type { MatcherContext } from "expect";
-import { formatFinding } from "./formatFinding";
+import { formatFinding } from "./formatFinding.js";
 
 export type ContrastLensMatchers = {
     toHaveNoViolations(): unknown;

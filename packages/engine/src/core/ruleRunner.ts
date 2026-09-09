@@ -1,4 +1,4 @@
-import type { Finding, Rule, RuleContext } from "./types";
+import type { Finding, Rule, RuleContext } from "./types.js";
 
 export function runRules(root: ParentNode, rules: Rule[]): Finding[] {
   const doc = root instanceof Document ? root : root.ownerDocument;

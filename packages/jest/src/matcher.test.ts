@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { buttonNoBorderRule } from "@contrast-lens/engine";
-import { contrastLens } from "./index";
-import { toHaveNoViolations } from "./matcher";
-import { matcherContext } from "./matcherContext.fixture";
+import { contrastLens } from "./index.js";
+import { toHaveNoViolations } from "./matcher.js";
+import { matcherContext } from "./matcherContext.fixture.js";
 
 describe("contrastLens", () => {
     it("runs the default rules against a DOM root", () => {

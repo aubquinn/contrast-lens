@@ -1,4 +1,4 @@
-import { Severity } from '../../core/types';
+import { Severity } from '../../core/types.js';
 
 const IDEAL_BORDER_STYLE = 'solid';
 const LESS_IDEAL_BORDER_STYLES = new Set(['dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset']);

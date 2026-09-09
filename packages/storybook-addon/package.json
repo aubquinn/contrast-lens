@@ -1,16 +1,14 @@
 {
     "name": "@contrast-lens/storybook-addon",
     "version": "0.0.0",
-    "private": true,
-    "main": "dist/index.js",
-    "module": "dist/index.js",
     "type": "module",
     "exports": {
         ".": {
-            "import": "./src/index.tsx",
-            "require": "./dist/index.js"
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
         },
-        "./*": "./src/*"
+        "./preset": "./preset.js",
+        "./preset.js": "./preset.js"
     },
     "types": "dist/index.d.ts",
     "files": [
@@ -23,7 +21,7 @@
         "typecheck": "tsc -p . --noEmit"
     },
     "dependencies": {
-        "@chakra-ui/react": "^3.36.1",
+        "@chakra-ui/react": "catalog:",
         "@contrast-lens/engine": "workspace:*",
         "@heroicons/react": "^2.2.0",
         "react": "catalog:",

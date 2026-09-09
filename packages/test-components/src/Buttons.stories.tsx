@@ -24,7 +24,7 @@ import {
     BadButtonFocusVisibleNoBorder,
     BadButtonDisabledNoBorder,
     BadButtonAriaDisabledNoBorder,
-} from './index';
+} from './index.js';
 
 const meta: Meta<typeof GoodButton> = {
     title: 'Test Components/Buttons',

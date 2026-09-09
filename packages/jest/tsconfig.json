@@ -3,16 +3,10 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist",
-        "declarationDir": "dist",
-        "composite": true,
         "tsBuildInfoFile": "dist/.tsbuildinfo"
     },
-    "include": [
-        "src"
-    ],
-    "exclude": [
-        "**/*.test.ts"
-    ],
+    "include": ["src"],
+    "exclude": ["**/*.test.ts"],
     "references": [
         {
             "path": "../engine"

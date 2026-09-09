@@ -1,15 +1,12 @@
 {
   "name": "@contrast-lens/engine",
   "version": "0.0.0",
-  "private": true,
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "type": "module",
   "exports": {
     ".": {
-      "import": "./src/index.ts",
-      "require": "./dist/index.js"
-    },
-    "./*": "./src/*"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
   },
   "types": "dist/index.d.ts",
   "files": [

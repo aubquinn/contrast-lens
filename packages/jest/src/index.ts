@@ -38,5 +38,5 @@ export function contrastLens(
     return findings;
 }
 
-export { toHaveNoViolations } from "./matcher";
-export type { ContrastLensMatchers } from "./matcher";
+export { toHaveNoViolations } from "./matcher.js";
+export type { ContrastLensMatchers } from "./matcher.js";

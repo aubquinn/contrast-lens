@@ -1,10 +1,10 @@
-import { Severity, type Finding, type Rule, type RuleContext } from '../core/types';
-import { getBorderRemovingStates } from './helpers/getBorderRemovingStates';
-import { getBorderStyleSeverity } from './helpers/getBorderStyleSeverity';
-import { getBorderWidthSeverity } from './helpers/getBorderWidthSeverity';
-import { hasAuthoredBorder } from './helpers/hasAuthoredBorder';
-import { hasVisibleBorder } from './helpers/hasVisibleBorder';
-import { isElementVisible } from './helpers/isElementVisible';
+import { Severity, type Finding, type Rule, type RuleContext } from '../core/types.js';
+import { getBorderRemovingStates } from './helpers/getBorderRemovingStates.js';
+import { getBorderStyleSeverity } from './helpers/getBorderStyleSeverity.js';
+import { getBorderWidthSeverity } from './helpers/getBorderWidthSeverity.js';
+import { hasAuthoredBorder } from './helpers/hasAuthoredBorder.js';
+import { hasVisibleBorder } from './helpers/hasVisibleBorder.js';
+import { isElementVisible } from './helpers/isElementVisible.js';
 
 const BORDER_HINT = `Keep a 2px transparent border, or restore the border and interaction states in forced-colors mode:
 .button { border: 2px solid transparent; }

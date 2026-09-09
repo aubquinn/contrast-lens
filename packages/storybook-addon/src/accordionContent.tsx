@@ -4,7 +4,7 @@ import { Accordion, Box, Button, Code, HStack, List, Span } from '@chakra-ui/rea
 import { EyeIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useTheme } from 'storybook/theming';
 
-import { createAccordionContentStyles } from './accordionContent.styles';
+import { createAccordionContentStyles } from './accordionContent.styles.js';
 
 export type AccordionContentProps = {
     item: Finding;

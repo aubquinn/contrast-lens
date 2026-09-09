@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { runAllRules } from '@contrast-lens/engine';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
-import { TabContent } from './tabContent';
+import { TabContent } from './tabContent.js';
 
 const getStoryRootFromPreview = (): HTMLElement | null => {
     const iframe = document.getElementById('storybook-preview-iframe') as HTMLIFrameElement | null;

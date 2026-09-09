@@ -3,15 +3,9 @@
     "compilerOptions": {
         "rootDir": ".",
         "noEmit": true,
-        "types": [
-            "jest",
-            "node"
-        ]
+        "types": ["jest", "node"]
     },
-    "include": [
-        "contrast-lens.test.ts",
-        "jest.setup.ts"
-    ],
+    "include": ["contrast-lens.test.ts", "jest.setup.ts"],
     "references": [
         {
             "path": "../jest"

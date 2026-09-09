@@ -4,8 +4,8 @@ import { Accordion, Tabs } from '@chakra-ui/react';
 import { Badge } from 'storybook/internal/components';
 import { useTheme } from 'storybook/theming';
 
-import { AccordionContent } from './accordionContent';
-import { createTabContentStyles } from './tabContent.styles';
+import { AccordionContent } from './accordionContent.js';
+import { createTabContentStyles } from './tabContent.styles.js';
 
 export type TabContentProps = {
     violations: Finding[];

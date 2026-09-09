@@ -1,4 +1,4 @@
 import { expect } from "expect";
-import { toHaveNoViolations } from "./matcher";
+import { toHaveNoViolations } from "./matcher.js";
 
 expect.extend({ toHaveNoViolations });

@@ -1,4 +1,4 @@
-import { Severity } from '../../core/types';
+import { Severity } from '../../core/types.js';
 
 const MINIMUM_BORDER_WIDTH_PX = 2;
 const BORDER_WIDTH_TOLERANCE_PX = 0.001;

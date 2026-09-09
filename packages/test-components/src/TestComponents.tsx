@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoodButton, BadButtonNoBorder, BadCustomButton, GoodInputButton, BadInputButtonNoBorder, DefaultBrowserButton, GoodButtonWithShadow, BadButtonWithShadow, BadButtonDotted, BadButtonDashed, BadButtonDouble, BadButtonGroove, BadButtonRidge, BadButtonInset, BadButtonOutset, BadButtonHidden } from './index';
+import { GoodButton, BadButtonNoBorder, BadCustomButton, GoodInputButton, BadInputButtonNoBorder, DefaultBrowserButton, GoodButtonWithShadow, BadButtonWithShadow, BadButtonDotted, BadButtonDashed, BadButtonDouble, BadButtonGroove, BadButtonRidge, BadButtonInset, BadButtonOutset, BadButtonHidden } from './index.js';
 
 export const TestComponents: React.FC = () => (
   <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>

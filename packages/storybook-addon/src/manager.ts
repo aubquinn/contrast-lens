@@ -1,5 +1,5 @@
 import { addons, types } from 'storybook/manager-api';
-import { ContrastLensPanel } from './index';
+import { ContrastLensPanel } from './index.js';
 
 const ADDON_ID = 'contrast-lens-addon';
 const PANEL_ID = 'contrast-lens/panel';
