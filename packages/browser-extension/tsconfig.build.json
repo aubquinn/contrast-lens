@@ -1,5 +1,10 @@
 {
     "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "noEmit": false,
+        "outDir": "dist",
+        "tsBuildInfoFile": "dist/.tsbuildinfo"
+    },
     "exclude": ["**/*.test.ts"],
     "references": [{ "path": "../engine/tsconfig.build.json" }]
 }

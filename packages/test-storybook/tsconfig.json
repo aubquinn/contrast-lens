@@ -5,5 +5,8 @@
         "noEmit": true
     },
     "include": ["*.ts", "*.tsx"],
-    "references": [{ "path": "../storybook-addon" }, { "path": "../test-components" }]
+    "references": [
+        { "path": "../storybook-addon/tsconfig.build.json" },
+        { "path": "../test-components/tsconfig.build.json" }
+    ]
 }
