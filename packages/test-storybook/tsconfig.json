@@ -1,0 +1,9 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "rootDir": ".",
+        "noEmit": true
+    },
+    "include": ["*.ts", "*.tsx"],
+    "references": [{ "path": "../storybook-addon" }, { "path": "../test-components" }]
+}
