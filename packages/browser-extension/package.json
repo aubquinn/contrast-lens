@@ -14,9 +14,9 @@
     ],
     "scripts": {
         "build": "pnpm run build:lib && pnpm run build:extension",
-        "build:lib": "tsc -b",
+        "build:lib": "tsc -b tsconfig.build.json",
         "build:extension": "shx cp manifest.json dist/ && shx cp popup.html dist/ && shx cp popup.js dist/ && shx cp background.js dist/ && shx cp content.js dist/",
-        "typecheck": "tsc -p tsconfig.typecheck.json",
+        "typecheck": "tsc -p . --noEmit",
         "dev": "pnpm run build:lib -- --watch",
         "test": "vitest run"
     },

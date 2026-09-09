@@ -9,6 +9,5 @@
         "moduleResolution": "Bundler"
     },
     "include": ["src"],
-    "exclude": ["**/*.test.ts", "**/*.test.tsx", "src/vitest.setup.tsx"],
     "references": [{ "path": "../engine" }]
 }
