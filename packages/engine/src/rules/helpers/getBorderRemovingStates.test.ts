@@ -15,9 +15,6 @@ describe('getBorderRemovingStates', () => {
             <button class="action" aria-disabled="true">Save</button>
         `;
         const element = document.querySelector('button')!;
-        const cssRule = document.styleSheets[0]?.cssRules[0] as CSSStyleRule | undefined;
-        console.log(cssRule?.selectorText, cssRule?.style.cssText, cssRule?.style.borderStyle, cssRule?.style.borderWidth);
-
         expect(getBorderRemovingStates(element, document)).toMatchObject({
             states: ['hover', 'focus-visible', 'aria-disabled'],
             blockedStyleSheetCount: 0,

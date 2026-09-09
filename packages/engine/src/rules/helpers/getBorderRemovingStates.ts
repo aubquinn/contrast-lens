@@ -54,7 +54,11 @@ function collectRemovingStates(rules: CSSRuleList, element: Element, states: Set
                     continue;
                 }
 
-                const removesBorder = hasExplicitNoBorder(styleText) || styleRule.style.borderStyle === 'hidden';
+                const removesBorder =
+                    hasExplicitNoBorder(styleText) ||
+                    styleRule.style.borderStyle === 'none' ||
+                    styleRule.style.borderStyle === 'hidden' ||
+                    styleRule.style.borderWidth === '0px';
 
                 if (removesBorder) {
                     selectorStates.forEach(({ name }) => states.add(name));
