@@ -92,6 +92,16 @@ Test and demonstration stories live in `packages/test-storybook`. Reusable fixtu
 | `.storybook`                 | Shared configuration for the test Storybook                    |
 | `scripts`                    | Repository development scripts                                 |
 
+## Workspace standards
+
+The workspace keeps shared tool versions in `pnpm-workspace.yaml` under `catalog`. Use `catalog:` in package manifests instead of adding a second version for TypeScript, Vite, Vitest, React, Storybook, Jest, or their shared tooling.
+
+TypeScript packages extend the root `tsconfig.base.json`. Keep package-specific settings such as `rootDir`, output paths, JSX, declarations, and project references in the package config.
+
+Vite configs merge `vite.config.base.ts`, and Vitest configs merge `vitest.config.base.ts`. Add only package-specific aliases, build entries, coverage, or test settings locally.
+
+The repository's application and tooling packages use ESM where their runtime supports it and declare `"type": "module"` in those package manifests. The browser extension's manifest-loaded JavaScript remains classic script code and intentionally does not use the ESM package setting.
+
 ## Common commands
 
 Run these commands from the repository root:

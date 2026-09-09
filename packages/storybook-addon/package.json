@@ -32,6 +32,6 @@
     "devDependencies": {
         "@types/react": "catalog:",
         "@types/react-dom": "catalog:",
-        "vite": "^8.0.7"
+        "vite": "catalog:"
     }
 }

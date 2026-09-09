@@ -1,10 +1,10 @@
-import { defineConfig } from 'vite';
+import { defineConfig, mergeConfig } from 'vite';
 import path from 'node:path';
+import { baseViteConfig } from '../../vite.config.base.js';
 
-export default defineConfig({
+export default defineConfig(mergeConfig(baseViteConfig, {
     build: {
         emptyOutDir: false,
-        sourcemap: true,
         lib: {
             entry: path.resolve(import.meta.dirname, 'src/manager.ts'),
             formats: ['es'],
@@ -20,4 +20,4 @@ export default defineConfig({
             ],
         },
     },
-});
+}));
