@@ -47,7 +47,9 @@ Integrates Contrast Lens into Storybook for component development.
 
 ```typescript
 // .storybook/main.ts
-import '@contrast-lens/storybook-addon';
+export default {
+    addons: ['@contrast-lens/storybook-addon/preset.js'],
+};
 ```
 
 ### Test Components (`packages/test-components`)
@@ -101,7 +103,7 @@ console.log('Accessibility issues:', issues);
 1. Install in your Storybook project:
 
     ```bash
-    pnpm add @contrast-lens/storybook-addon @contrast-lens/test-components
+    pnpm add @contrast-lens/storybook-addon
     ```
 
 2. Register the addon preset in `.storybook/main.ts`:
@@ -112,7 +114,7 @@ console.log('Accessibility issues:', issues);
     };
     ```
 
-3. Use test components to verify the addon works:
+3. Within this repository, use the private test components to verify the addon works (external projects should use their own components):
     ```typescript
     import { BadButtonNoBorder } from '@contrast-lens/test-components';
 
@@ -121,13 +123,15 @@ console.log('Accessibility issues:', issues);
 
 The Contrast Lens panel will show accessibility violations automatically.
 
+The coverage badge reports the engine only. Vitest packages generate individual coverage reports; the Jest integration suite checks behavior without collecting coverage.
+
 ## Development
 
 - `pnpm build` - Build all packages
 - `pnpm test` - Build packages and run all workspace tests
-- `pnpm typecheck` - Type check all packages
+- `pnpm typecheck` - Build referenced declarations and type check all packages and tooling
 - `pnpm format:check` - Check supported files with Prettier
-- `pnpm clean` - Clean build artifacts
+- `pnpm clean` - Remove build output, coverage, Storybook output, and TypeScript caches; preserve installed dependencies
 
 ## Contributing
 

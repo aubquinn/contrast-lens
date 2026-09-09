@@ -1,0 +1,23 @@
+{
+    "extends": "./tsconfig.base.json",
+    "compilerOptions": {
+        "composite": false,
+        "noEmit": true,
+        "allowJs": true,
+        "checkJs": true,
+        "types": ["node"],
+        "module": "ESNext",
+        "moduleResolution": "Bundler"
+    },
+    "include": [
+        "*.ts",
+        "*.mts",
+        "scripts/**/*.mjs",
+        ".storybook/**/*.ts",
+        "packages/*/vite.config.ts",
+        "packages/*/vitest.config.ts",
+        "packages/*/jest.config.mjs",
+        "packages/*/preset.js"
+    ],
+    "exclude": ["node_modules", "dist"]
+}

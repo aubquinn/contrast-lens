@@ -29,10 +29,10 @@ jobs:
             - name: Check formatting
               run: pnpm format:check
 
-            - name: Run tests with coverage
+            - name: Run workspace tests
               run: pnpm test
 
-            - name: Type-check packages
+            - name: Type-check packages and tooling
               run: pnpm typecheck
 
             - name: Lint source
@@ -47,7 +47,7 @@ jobs:
             - name: Build Storybook
               run: pnpm build-storybook
 
-            - name: Coveralls GitHub Action
+            - name: Upload engine coverage to Coveralls
               uses: coverallsapp/github-action@v2.3.6
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}

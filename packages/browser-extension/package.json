@@ -18,7 +18,8 @@
         "build:extension": "shx cp manifest.json dist/ && shx cp popup.html dist/ && shx cp popup.js dist/ && shx cp background.js dist/ && shx cp content.js dist/",
         "typecheck": "tsc -p . --noEmit",
         "dev": "pnpm run build:lib -- --watch",
-        "test": "vitest run"
+        "test": "pnpm run test:run",
+        "test:run": "vitest run"
     },
     "dependencies": {
         "@contrast-lens/engine": "workspace:*"

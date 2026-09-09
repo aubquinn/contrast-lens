@@ -19,7 +19,8 @@
         "build": "tsc -b tsconfig.build.json && vite build --config vite.config.ts",
         "dev": "vite build --config vite.config.ts --watch",
         "typecheck": "tsc -p . --noEmit",
-        "test": "vitest run"
+        "test": "pnpm run test:run",
+        "test:run": "vitest run"
     },
     "dependencies": {
         "@chakra-ui/react": "catalog:",
@@ -37,6 +38,10 @@
         "@vitest/coverage-v8": "catalog:",
         "jsdom": "catalog:",
         "vite": "catalog:",
-        "vitest": "catalog:"
+        "vitest": "catalog:",
+        "storybook": "catalog:"
+    },
+    "peerDependencies": {
+        "storybook": "^10.5.8"
     }
 }

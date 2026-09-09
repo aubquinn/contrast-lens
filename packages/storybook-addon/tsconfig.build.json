@@ -13,7 +13,12 @@
         "**/*.fixture.ts",
         "**/vitest.setup.ts",
         "**/vitest.setup.tsx",
-        "src/test-utils.tsx"
+        "src/test-utils.tsx",
+        "**/*.test-d.ts"
     ],
-    "references": [{ "path": "../engine/tsconfig.build.json" }]
+    "references": [
+        {
+            "path": "../engine/tsconfig.build.json"
+        }
+    ]
 }

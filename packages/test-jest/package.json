@@ -4,9 +4,9 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "pnpm --filter @contrast-lens/jest build",
         "typecheck": "tsc -p . --noEmit",
-        "test": "pnpm --filter @contrast-lens/jest build && cross-env NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs"
+        "test": "pnpm --filter @contrast-lens/jest build && pnpm run test:run",
+        "test:run": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs"
     },
     "dependencies": {
         "@contrast-lens/jest": "workspace:*"

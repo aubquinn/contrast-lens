@@ -9,7 +9,8 @@ const packageManagerCommand = isJavaScriptCli
     ? process.execPath
     : (packageManagerCli ?? (process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm'));
 const useShell = /\.(cmd|bat)$/i.test(packageManagerCommand);
-const packageManagerArguments = (args) => (isJavaScriptCli ? [packageManagerCli, ...args] : args);
+/** @param {string[]} args */
+const packageManagerArguments = (args) => (isJavaScriptCli && packageManagerCli ? [packageManagerCli, ...args] : args);
 
 const initialBuild = spawnSync(
     packageManagerCommand,

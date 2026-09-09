@@ -12,7 +12,6 @@ export default defineConfig([
         '**/coverage/**',
         '**/storybook-static/**',
         '.pnpm-store/**',
-        '.storybook/**',
         '.vscode/**',
     ]),
     {

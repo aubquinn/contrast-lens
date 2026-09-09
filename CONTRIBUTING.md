@@ -112,8 +112,8 @@ Run these commands from the repository root:
 | ----------------------- | ---------------------------------------------------------- |
 | `pnpm install`          | Install dependencies for every workspace package           |
 | `pnpm build`            | Build the engine, extension, addon, and test components    |
-| `pnpm test`             | Build packages and run all workspace tests with coverage   |
-| `pnpm typecheck`        | Type-check the main workspace packages                     |
+| `pnpm test`             | Build packages and run all workspace tests                 |
+| `pnpm typecheck`        | Build declarations and type-check packages and tooling     |
 | `pnpm lint`             | Check JavaScript and TypeScript files with ESLint          |
 | `pnpm lint:oxlint`      | Run the fast correctness lint pass with Oxlint             |
 | `pnpm lint:fix`         | Apply safe ESLint fixes                                    |
@@ -129,6 +129,12 @@ You can run a script for one package with pnpm's filter option. For example:
 pnpm --filter @contrast-lens/engine test
 pnpm --filter @contrast-lens/storybook-addon build
 ```
+
+`pnpm test` builds once, then runs each package's `test:run` script. The standalone Jest integration `test` command also prepares its dependency. Vitest packages collect coverage; the Jest integration suite does not. CI uploads engine coverage only, and the README badge represents that package.
+
+`pnpm typecheck` builds referenced TypeScript outputs before checking packages and the dedicated `tsconfig.tools.json`. Shared CLI tools live at the root; packages declare the libraries they import directly, including test and Storybook APIs.
+
+`pnpm clean` removes generated `dist`, `coverage`, `storybook-static`, and TypeScript cache files from the root and workspace packages. Installed dependencies are preserved.
 
 ## Working on accessibility rules
 

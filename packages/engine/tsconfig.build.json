@@ -12,6 +12,7 @@
         "**/*.stories.tsx",
         "**/*.fixture.ts",
         "**/vitest.setup.ts",
-        "**/vitest.setup.tsx"
+        "**/vitest.setup.tsx",
+        "**/*.test-d.ts"
     ]
 }

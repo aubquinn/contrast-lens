@@ -1,15 +1,20 @@
 {
-    "extends": "./tsconfig.base.json",
-    "compilerOptions": {
-        "rootDir": ".",
-        "outDir": "./dist"
-    },
-    "exclude": ["node_modules", "dist", "packages/**"],
     "references": [
-        { "path": "./packages/engine/tsconfig.build.json" },
-        { "path": "./packages/browser-extension/tsconfig.build.json" },
-        { "path": "./packages/jest/tsconfig.build.json" },
-        { "path": "./packages/storybook-addon/tsconfig.build.json" },
-        { "path": "./packages/test-components/tsconfig.build.json" }
-    ]
+        {
+            "path": "./packages/engine/tsconfig.build.json"
+        },
+        {
+            "path": "./packages/browser-extension/tsconfig.build.json"
+        },
+        {
+            "path": "./packages/jest/tsconfig.build.json"
+        },
+        {
+            "path": "./packages/storybook-addon/tsconfig.build.json"
+        },
+        {
+            "path": "./packages/test-components/tsconfig.build.json"
+        }
+    ],
+    "files": []
 }

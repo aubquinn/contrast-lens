@@ -15,10 +15,12 @@
     "scripts": {
         "build": "tsc -b tsconfig.build.json",
         "typecheck": "tsc -p . --noEmit",
-        "test": "vitest run"
+        "test": "pnpm run test:run",
+        "test:run": "vitest run"
     },
     "devDependencies": {
         "@vitest/coverage-v8": "catalog:",
-        "jsdom": "catalog:"
+        "jsdom": "catalog:",
+        "vitest": "catalog:"
     }
 }

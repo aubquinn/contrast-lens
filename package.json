@@ -11,18 +11,20 @@
     "scripts": {
         "dev": "vite",
         "build": "pnpm --recursive --if-present run build",
-        "test": "pnpm run build && pnpm --recursive --if-present run test",
-        "typecheck": "pnpm --filter @contrast-lens/engine run build && pnpm --recursive --if-present run typecheck",
+        "test": "pnpm run build && pnpm --recursive --if-present run test:run",
+        "typecheck": "pnpm run build:types && pnpm --recursive --if-present run typecheck && pnpm run typecheck:tools",
         "lint": "eslint . --ext .js,.mjs,.cjs,.ts,.mts,.cts,.jsx,.tsx",
         "lint:fix": "eslint . --ext .js,.mjs,.cjs,.ts,.mts,.cts,.jsx,.tsx --fix",
         "lint:oxlint": "oxlint .",
         "format": "prettier --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,json,md,yaml,yml}\"",
         "format:check": "prettier --check \"**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,json,md,yaml,yml}\"",
-        "clean": "shx rm -rf dist node_modules packages/*/dist",
+        "clean": "node scripts/clean.mjs",
         "storybook": "node scripts/dev-storybook.mjs",
         "storybook:serve": "storybook dev --port 6006",
         "build-storybook": "storybook build",
-        "storybook:doctor": "storybook doctor"
+        "storybook:doctor": "storybook doctor",
+        "build:types": "tsc -b tsconfig.json",
+        "typecheck:tools": "tsc -p tsconfig.tools.json"
     },
     "devDependencies": {
         "@contrast-lens/storybook-addon": "workspace:*",
