@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { hasVisibleBoxShadow } from './hasVisibleBoxShadow';
+import { hasVisibleBoxShadow } from './hasVisibleBoxShadow.js';
 
 const createStyle = (values: Partial<CSSStyleDeclaration> = {}): CSSStyleDeclaration => values as CSSStyleDeclaration;
 

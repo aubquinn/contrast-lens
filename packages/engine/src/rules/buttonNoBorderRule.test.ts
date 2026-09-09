@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { runRules } from '../core';
-import { buttonNoBorderRule } from './buttonNoBorderRule';
+import { runRules } from '../core/index.js';
+import { buttonNoBorderRule } from './buttonNoBorderRule.js';
 
 describe('buttonNoBorderRule', () => {
     it('does not warn for a native button using its browser-default border', () => {

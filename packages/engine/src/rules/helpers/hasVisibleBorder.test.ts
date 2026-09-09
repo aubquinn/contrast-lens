@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { hasVisibleBorder } from './hasVisibleBorder';
+import { hasVisibleBorder } from './hasVisibleBorder.js';
 
 const createStyle = (values: Partial<CSSStyleDeclaration> = {}): CSSStyleDeclaration => values as CSSStyleDeclaration;
 

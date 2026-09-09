@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { isElementVisible } from './isElementVisible';
+import { isElementVisible } from './isElementVisible.js';
 
 const createStyle = (values: Partial<CSSStyleDeclaration> = {}): CSSStyleDeclaration => values as CSSStyleDeclaration;
 

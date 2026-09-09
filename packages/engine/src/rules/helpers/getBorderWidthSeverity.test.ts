@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { Severity } from '../../core/types';
-import { getBorderWidthSeverity } from './getBorderWidthSeverity';
+import { Severity } from '../../core/types.js';
+import { getBorderWidthSeverity } from './getBorderWidthSeverity.js';
 
 const createStyle = (values: Partial<CSSStyleDeclaration> = {}): CSSStyleDeclaration => values as CSSStyleDeclaration;
 

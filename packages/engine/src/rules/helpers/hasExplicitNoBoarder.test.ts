@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { hasExplicitNoBorder } from './hasExplicitNoBoarder';
+import { hasExplicitNoBorder } from './hasExplicitNoBoarder.js';
 
 describe('hasExplicitNoBorder', () => {
     it.each(['border: none', 'border-style: none', 'border-width: 0', 'border: 0', 'color: red; border : none;'])(

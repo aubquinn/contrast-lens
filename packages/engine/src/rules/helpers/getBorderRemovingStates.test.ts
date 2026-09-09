@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { getBorderRemovingStates } from './getBorderRemovingStates';
+import { getBorderRemovingStates } from './getBorderRemovingStates.js';
 
 afterEach(() => {
     document.body.replaceChildren();

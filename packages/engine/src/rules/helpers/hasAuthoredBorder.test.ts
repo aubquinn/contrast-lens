@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { hasAuthoredBorder } from './hasAuthoredBorder';
+import { hasAuthoredBorder } from './hasAuthoredBorder.js';
 
 afterEach(() => {
     document.body.replaceChildren();
