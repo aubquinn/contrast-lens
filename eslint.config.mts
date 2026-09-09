@@ -28,5 +28,10 @@ export default defineConfig([
     pluginReact.configs.flat.recommended,
     {
         settings: { react: { version: '18.3' } },
+        rules: {
+            // The project uses the automatic JSX runtime (tsconfig `jsx: "react-jsx"`), which never
+            // requires `React` to be in scope, so this classic-transform rule is obsolete here.
+            'react/react-in-jsx-scope': 'off',
+        },
     },
 ]);

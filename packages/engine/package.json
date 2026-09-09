@@ -15,7 +15,7 @@
     "scripts": {
         "build": "tsc -b",
         "typecheck": "tsc -p . --noEmit",
-        "test": "vitest run --coverage"
+        "test": "vitest run"
     },
     "devDependencies": {
         "@vitest/coverage-v8": "catalog:",
