@@ -1,0 +1,43 @@
+{
+    "name": "@contrast-lens/jest",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        },
+        "./extend-expect": {
+            "types": "./dist/extend-expect.d.ts",
+            "import": "./dist/extend-expect.js"
+        },
+        "./matchers": {
+            "types": "./dist/matcher.d.ts",
+            "import": "./dist/matcher.js"
+        }
+    },
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc -b",
+        "typecheck": "tsc -p . --noEmit",
+        "test": "vitest run"
+    },
+    "dependencies": {
+        "@contrast-lens/engine": "workspace:*"
+    },
+    "peerDependencies": {
+        "expect": ">=29",
+        "jest": ">=29"
+    },
+    "devDependencies": {
+        "@types/jest": "^30.0.0",
+        "jsdom": "^29.0.2",
+        "vitest": "^4.1.3"
+    }
+}
