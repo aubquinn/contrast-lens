@@ -2,13 +2,13 @@
     "name": "@contrast-lens/test-components",
     "version": "0.0.0",
     "private": true,
-    "main": "dist/index.js",
-    "module": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "files": [
-        "dist",
-        "src"
-    ],
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./src/index.tsx",
+            "import": "./src/index.tsx"
+        }
+    },
     "scripts": {
         "build": "tsc -b",
         "typecheck": "tsc -p . --noEmit"
