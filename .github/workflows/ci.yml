@@ -38,6 +38,9 @@ jobs:
             - name: Lint source
               run: pnpm lint
 
+            - name: Run Oxlint
+              run: pnpm lint:oxlint
+
             - name: Coveralls GitHub Action
               uses: coverallsapp/github-action@v2.3.6
               with:
