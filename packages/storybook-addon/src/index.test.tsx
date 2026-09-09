@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import { ContrastLensPanel } from './index.js';
 import { themeFixture } from './theme.fixture.js';
-import { render } from './vitest.setup.js';
+import { render } from './vitest.setup.tsx';
 
 vi.mock('storybook/theming', () => ({
     useTheme: () => themeFixture,

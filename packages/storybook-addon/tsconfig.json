@@ -5,8 +5,9 @@
         "noEmit": true,
         // @chakra-ui/react's export barrels don't resolve under NodeNext; this package needs Bundler resolution.
         "module": "ESNext",
-        "moduleResolution": "Bundler"
+        "moduleResolution": "Bundler",
+        "allowImportingTsExtensions": true
     },
-    "include": ["src"],
+    "include": ["src", "../../vitest.setup.d.ts"],
     "references": [{ "path": "../engine/tsconfig.build.json" }]
 }

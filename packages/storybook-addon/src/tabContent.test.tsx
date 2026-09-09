@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from 'vitest';
 import type { Finding } from '@contrast-lens/engine';
 import { TabContent } from './tabContent.js';
 import { themeFixture } from './theme.fixture.js';
-import { render } from './vitest.setup.js';
+import { render } from './vitest.setup.tsx';
 
 vi.mock('storybook/theming', () => ({
     useTheme: () => themeFixture,
