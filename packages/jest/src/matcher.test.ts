@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { buttonNoBorderRule } from "@contrast-lens/engine";
 import { contrastLens } from "./index";
 import { toHaveNoViolations } from "./matcher";
+import { matcherContext } from "./matcherContext.fixture";
 
 describe("contrastLens", () => {
     it("runs the default rules against a DOM root", () => {
@@ -30,22 +31,15 @@ describe("contrastLens", () => {
 });
 
 describe("toHaveNoViolations", () => {
-    const context = {
-        isNot: false,
-        utils: {
-            matcherHint: () => "expect(received).toHaveNoViolations()",
-        },
-    };
-
     it("passes for an empty result", () => {
-        expect(toHaveNoViolations.call(context, [])).toMatchObject({ pass: true });
+        expect(toHaveNoViolations.call(matcherContext, [])).toMatchObject({ pass: true });
     });
 
     it("returns formatted details for findings", () => {
         document.body.innerHTML = `<button style="border: none">Save</button>`;
         const [finding] = contrastLens(document);
 
-        const result = toHaveNoViolations.call(context, [finding]);
+        const result = toHaveNoViolations.call(matcherContext, [finding]);
 
         expect(result.pass).toBe(false);
         expect(result.message()).toContain("button-no-border [error]");
