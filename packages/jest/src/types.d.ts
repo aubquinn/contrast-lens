@@ -1,4 +1,4 @@
-declare module "expect" {
+declare module 'expect' {
     interface Matchers<R> {
         toHaveNoViolations(): R;
     }
@@ -16,4 +16,4 @@ declare global {
     }
 }
 
-export { };
+export {};

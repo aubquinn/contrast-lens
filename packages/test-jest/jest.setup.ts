@@ -1,1 +1,1 @@
-import "@contrast-lens/jest/extend-expect";
+import '@contrast-lens/jest/extend-expect';

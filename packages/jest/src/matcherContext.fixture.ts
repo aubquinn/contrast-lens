@@ -1,4 +1,4 @@
-import type { MatcherContext } from "expect";
+import type { MatcherContext } from 'expect';
 
 export const matcherContext: MatcherContext = {
     assertionCalls: 0,
@@ -20,6 +20,6 @@ export const matcherContext: MatcherContext = {
     dontThrow: () => undefined,
     equals: (received, expected) => Object.is(received, expected),
     utils: {
-        matcherHint: () => "expect(received).toHaveNoViolations()",
-    } as unknown as MatcherContext["utils"],
+        matcherHint: () => 'expect(received).toHaveNoViolations()',
+    } as unknown as MatcherContext['utils'],
 };

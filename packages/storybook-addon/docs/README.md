@@ -5,24 +5,27 @@ This package is tested locally through the `packages/test-storybook` app.
 ## Local test flow
 
 1. From the repository root, install dependencies:
-   ```bash
-   pnpm install
-   ```
+
+    ```bash
+    pnpm install
+    ```
 
 2. Build the Storybook addon package:
-   ```bash
-   pnpm --filter @contrast-lens/storybook-addon build
-   ```
+
+    ```bash
+    pnpm --filter @contrast-lens/storybook-addon build
+    ```
 
 3. Start the local Storybook app:
-   ```bash
-   pnpm --filter test-storybook storybook
-   ```
+
+    ```bash
+    pnpm --filter test-storybook storybook
+    ```
 
 4. Open the app in your browser:
-   ```text
-   http://localhost:6006
-   ```
+    ```text
+    http://localhost:6006
+    ```
 
 ## Notes
 

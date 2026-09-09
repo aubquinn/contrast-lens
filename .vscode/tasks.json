@@ -1,12 +1,12 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "Run Storybook test app",
-      "type": "shell",
-      "command": "pnpm --filter test-storybook storybook",
-      "isBackground": true,
-      "problemMatcher": []
-    }
-  ]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Storybook test app",
+            "type": "shell",
+            "command": "pnpm --filter test-storybook storybook",
+            "isBackground": true,
+            "problemMatcher": []
+        }
+    ]
 }

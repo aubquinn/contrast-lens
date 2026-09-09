@@ -1,4 +1,4 @@
-import type { UserConfig } from "vite";
+import type { UserConfig } from 'vite';
 
 export const baseViteConfig: UserConfig = {
     build: {

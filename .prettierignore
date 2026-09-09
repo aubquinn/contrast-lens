@@ -4,3 +4,4 @@ packages/*/dist
 coverage
 build
 .cache
+pnpm-lock.yaml

@@ -14,14 +14,14 @@ Register the matcher in a Jest setup file:
 
 ```ts
 // jest.setup.ts
-import "@contrast-lens/jest/extend-expect";
+import '@contrast-lens/jest/extend-expect';
 ```
 
 ```ts
 // jest.config.ts
 export default {
-    testEnvironment: "jsdom",
-    setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+    testEnvironment: 'jsdom',
+    setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 };
 ```
 

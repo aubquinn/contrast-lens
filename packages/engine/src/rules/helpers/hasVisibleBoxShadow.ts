@@ -7,7 +7,6 @@ export function hasVisibleBoxShadow(style: CSSStyleDeclaration): boolean {
 
     const shadows = boxShadow.split(/,(?![^(]*\))/g).map((shadow) => shadow.trim());
     for (const shadow of shadows) {
-
         if (!shadow || shadow.includes('inset')) {
             continue;
         }

@@ -1,7 +1,7 @@
-import { allRules, runRules } from "@contrast-lens/engine";
-import type { Finding, Rule } from "@contrast-lens/engine";
+import { allRules, runRules } from '@contrast-lens/engine';
+import type { Finding, Rule } from '@contrast-lens/engine';
 
-declare module "expect" {
+declare module 'expect' {
     interface Matchers<R> {
         toHaveNoViolations(): R;
     }
@@ -25,18 +25,15 @@ export type ContrastLensOptions = {
     includeWarnings?: boolean;
 };
 
-export function contrastLens(
-    root: ParentNode,
-    options: ContrastLensOptions = {},
-): Finding[] {
+export function contrastLens(root: ParentNode, options: ContrastLensOptions = {}): Finding[] {
     const findings = runRules(root, options.rules ?? allRules);
 
     if (options.includeWarnings === false) {
-        return findings.filter((finding) => finding.severity === "error");
+        return findings.filter((finding) => finding.severity === 'error');
     }
 
     return findings;
 }
 
-export { toHaveNoViolations } from "./matcher.js";
-export type { ContrastLensMatchers } from "./matcher.js";
+export { toHaveNoViolations } from './matcher.js';
+export type { ContrastLensMatchers } from './matcher.js';

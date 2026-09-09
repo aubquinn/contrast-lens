@@ -1,6 +1,6 @@
-import type { Finding } from "@contrast-lens/engine";
-import type { MatcherContext } from "expect";
-import { formatFinding } from "./formatFinding.js";
+import type { Finding } from '@contrast-lens/engine';
+import type { MatcherContext } from 'expect';
+import { formatFinding } from './formatFinding.js';
 
 export type ContrastLensMatchers = {
     toHaveNoViolations(): unknown;
@@ -11,14 +11,14 @@ export function toHaveNoViolations(
     received: Finding[],
 ): { pass: boolean; message: () => string } {
     if (!Array.isArray(received)) {
-        throw new TypeError("toHaveNoViolations expects the received value to be a Finding[].");
+        throw new TypeError('toHaveNoViolations expects the received value to be a Finding[].');
     }
 
     const pass = received.length === 0;
-    const hint = this.utils.matcherHint("toHaveNoViolations", "received", "", {
+    const hint = this.utils.matcherHint('toHaveNoViolations', 'received', '', {
         isNot: this.isNot,
     });
-    const details = received.map(formatFinding).join("\n\n");
+    const details = received.map(formatFinding).join('\n\n');
 
     return {
         pass,

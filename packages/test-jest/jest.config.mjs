@@ -1,19 +1,19 @@
 export default {
-    testEnvironment: "jsdom",
-    setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
-    extensionsToTreatAsEsm: [".ts"],
+    testEnvironment: 'jsdom',
+    setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+    extensionsToTreatAsEsm: ['.ts'],
     transform: {
-        "^.+\\.ts$": [
-            "@swc/jest",
+        '^.+\\.ts$': [
+            '@swc/jest',
             {
                 jsc: {
                     parser: {
-                        syntax: "typescript",
+                        syntax: 'typescript',
                     },
-                    target: "es2022",
+                    target: 'es2022',
                 },
                 module: {
-                    type: "es6",
+                    type: 'es6',
                 },
             },
         ],

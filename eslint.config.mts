@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import pluginReact from 'eslint-plugin-react';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
@@ -34,4 +35,7 @@ export default defineConfig([
             'react/react-in-jsx-scope': 'off',
         },
     },
+    // Must stay last: reports Prettier formatting diffs as lint errors and turns off any
+    // stylistic rules above that would otherwise conflict with Prettier's own formatting.
+    eslintPluginPrettierRecommended,
 ]);
