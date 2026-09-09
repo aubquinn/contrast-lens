@@ -5,6 +5,7 @@
         "rootDir": ".",
         "outDir": "./dist"
     },
+    "exclude": ["node_modules", "dist", "packages/**"],
     "references": [
         { "path": "./packages/engine" },
         { "path": "./packages/browser-extension" },
