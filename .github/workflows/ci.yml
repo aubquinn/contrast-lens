@@ -41,6 +41,12 @@ jobs:
             - name: Run Oxlint
               run: pnpm lint:oxlint
 
+            - name: Check Storybook configuration
+              run: pnpm storybook:doctor
+
+            - name: Build Storybook
+              run: pnpm build-storybook
+
             - name: Coveralls GitHub Action
               uses: coverallsapp/github-action@v2.3.6
               with:

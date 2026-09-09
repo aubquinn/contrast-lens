@@ -1,7 +1,6 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "noUncheckedSideEffectImports": true,
         "rootDir": ".",
         "outDir": "./dist"
     },
@@ -12,6 +11,5 @@
         { "path": "./packages/jest/tsconfig.build.json" },
         { "path": "./packages/storybook-addon/tsconfig.build.json" },
         { "path": "./packages/test-components/tsconfig.build.json" }
-    ],
-    "types": ["vite/client", "node", "react", "react-dom", "**/*.d.ts", "jest"]
+    ]
 }

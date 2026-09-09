@@ -5,5 +5,13 @@
         "outDir": "dist",
         "tsBuildInfoFile": "dist/.tsbuildinfo"
     },
-    "exclude": ["src/**/*.stories.tsx", "**/*.test.tsx", "src/vitest.setup.ts"]
+    "exclude": [
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "**/*.stories.ts",
+        "**/*.stories.tsx",
+        "**/*.fixture.ts",
+        "**/vitest.setup.ts",
+        "**/vitest.setup.tsx"
+    ]
 }

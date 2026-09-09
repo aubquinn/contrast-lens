@@ -5,6 +5,14 @@
         "outDir": "dist",
         "tsBuildInfoFile": "dist/.tsbuildinfo"
     },
-    "exclude": ["**/*.test.ts"],
+    "exclude": [
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "**/*.stories.ts",
+        "**/*.stories.tsx",
+        "**/*.fixture.ts",
+        "**/vitest.setup.ts",
+        "**/vitest.setup.tsx"
+    ],
     "references": [{ "path": "../engine/tsconfig.build.json" }]
 }

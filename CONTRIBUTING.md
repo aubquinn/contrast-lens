@@ -61,6 +61,7 @@ pnpm --version
     pnpm typecheck
     pnpm lint
     pnpm lint:oxlint
+    pnpm format:check
     ```
 
 ## Developing with Storybook
@@ -111,12 +112,13 @@ Run these commands from the repository root:
 | ----------------------- | ---------------------------------------------------------- |
 | `pnpm install`          | Install dependencies for every workspace package           |
 | `pnpm build`            | Build the engine, extension, addon, and test components    |
-| `pnpm test`             | Run the engine unit tests with coverage                    |
+| `pnpm test`             | Build packages and run all workspace tests with coverage   |
 | `pnpm typecheck`        | Type-check the main workspace packages                     |
 | `pnpm lint`             | Check JavaScript and TypeScript files with ESLint          |
 | `pnpm lint:oxlint`      | Run the fast correctness lint pass with Oxlint             |
 | `pnpm lint:fix`         | Apply safe ESLint fixes                                    |
 | `pnpm format`           | Format supported files with Prettier                       |
+| `pnpm format:check`     | Check supported files with Prettier                        |
 | `pnpm storybook`        | Build and watch the addon while running the test Storybook |
 | `pnpm build-storybook`  | Produce a static Storybook build                           |
 | `pnpm storybook:doctor` | Diagnose Storybook configuration and dependency issues     |

@@ -12,6 +12,7 @@
         "forceConsistentCasingInFileNames": true,
         "resolveJsonModule": true,
         "composite": true,
+        "noUncheckedSideEffectImports": true,
         "useDefineForClassFields": true,
         "jsx": "react-jsx"
     }

@@ -104,7 +104,13 @@ console.log('Accessibility issues:', issues);
     pnpm add @contrast-lens/storybook-addon @contrast-lens/test-components
     ```
 
-2. Register the addon in `.storybook/main.ts`
+2. Register the addon preset in `.storybook/main.ts`:
+
+    ```typescript
+    export default {
+        addons: ['@contrast-lens/storybook-addon/preset.js'],
+    };
+    ```
 
 3. Use test components to verify the addon works:
     ```typescript
@@ -118,8 +124,9 @@ The Contrast Lens panel will show accessibility violations automatically.
 ## Development
 
 - `pnpm build` - Build all packages
-- `pnpm test` - Run engine tests
+- `pnpm test` - Build packages and run all workspace tests
 - `pnpm typecheck` - Type check all packages
+- `pnpm format:check` - Check supported files with Prettier
 - `pnpm clean` - Clean build artifacts
 
 ## Contributing
