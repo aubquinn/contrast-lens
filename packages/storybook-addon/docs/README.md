@@ -6,17 +6,17 @@ This package is tested locally through the `packages/test-storybook` app.
 
 1. From the repository root, install dependencies:
    ```bash
-   npm install
+   pnpm install
    ```
 
 2. Build the Storybook addon package:
    ```bash
-   npm --prefix packages/storybook-addon run build
+   pnpm --filter @contrast-lens/storybook-addon build
    ```
 
 3. Start the local Storybook app:
    ```bash
-   npm --prefix packages/test-storybook run storybook
+   pnpm --filter test-storybook storybook
    ```
 
 4. Open the app in your browser:

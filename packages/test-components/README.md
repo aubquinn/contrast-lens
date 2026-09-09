@@ -28,7 +28,7 @@ A collection of React components designed to test accessibility rules and demons
 
 1. Install the components and addon:
 ```bash
-npm install @contrast-lens/test-components @contrast-lens/storybook-addon
+pnpm add @contrast-lens/test-components @contrast-lens/storybook-addon
 ```
 
 2. Register the addon in `.storybook/main.ts`:

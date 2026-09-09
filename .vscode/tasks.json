@@ -4,7 +4,7 @@
     {
       "label": "Run Storybook test app",
       "type": "shell",
-      "command": "npm --prefix packages/test-storybook run storybook",
+      "command": "pnpm --filter test-storybook storybook",
       "isBackground": true,
       "problemMatcher": []
     }

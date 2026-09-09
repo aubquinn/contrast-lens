@@ -54,17 +54,17 @@ React components designed to test accessibility rules and demonstrate violations
 
 1. **Install dependencies:**
    ```bash
-   npm install
+   pnpm install
    ```
 
 2. **Build all packages:**
    ```bash
-   npm run build
+   pnpm build
    ```
 
 3. **Run tests:**
    ```bash
-   npm run test
+   pnpm test
    ```
 
 ## Usage Examples
@@ -78,14 +78,14 @@ console.log('Accessibility issues:', issues);
 ```
 
 ### Browser Extension
-1. Build the extension: `npm run build`
+1. Build the extension: `pnpm build`
 2. Load `packages/browser-extension/dist/` in Chrome
 3. Click the extension icon and scan pages
 
 ### Storybook Integration
 1. Install in your Storybook project:
    ```bash
-   npm install @contrast-lens/storybook-addon @contrast-lens/test-components
+   pnpm add @contrast-lens/storybook-addon @contrast-lens/test-components
    ```
 
 2. Register the addon in `.storybook/main.ts`
@@ -101,10 +101,10 @@ The Contrast Lens panel will show accessibility violations automatically.
 
 ## Development
 
-- `npm run build` - Build all packages
-- `npm run test` - Run engine tests
-- `npm run typecheck` - Type check all packages
-- `npm run clean` - Clean build artifacts
+- `pnpm build` - Build all packages
+- `pnpm test` - Run engine tests
+- `pnpm typecheck` - Type check all packages
+- `pnpm clean` - Clean build artifacts
 
 ## Contributing
 
