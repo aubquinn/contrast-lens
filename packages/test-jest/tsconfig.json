@@ -1,0 +1,20 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "rootDir": ".",
+        "noEmit": true,
+        "types": [
+            "jest",
+            "node"
+        ]
+    },
+    "include": [
+        "contrast-lens.test.ts",
+        "jest.setup.ts"
+    ],
+    "references": [
+        {
+            "path": "../jest"
+        }
+    ]
+}

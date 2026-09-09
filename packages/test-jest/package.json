@@ -1,0 +1,22 @@
+{
+    "name": "@contrast-lens/test-jest",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "pnpm --filter @contrast-lens/jest build",
+        "typecheck": "tsc -p . --noEmit",
+        "test": "pnpm --filter @contrast-lens/jest build && cross-env NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs"
+    },
+    "dependencies": {
+        "@contrast-lens/jest": "workspace:*"
+    },
+    "devDependencies": {
+        "@swc/core": "^1.15.7",
+        "@swc/jest": "^0.2.39",
+        "@types/jest": "^30.0.0",
+        "cross-env": "^10.1.0",
+        "jest": "^30.5.1",
+        "jest-environment-jsdom": "^30.5.1"
+    }
+}

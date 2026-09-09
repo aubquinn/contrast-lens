@@ -1,6 +1,24 @@
 import { allRules, runRules } from "@contrast-lens/engine";
 import type { Finding, Rule } from "@contrast-lens/engine";
 
+declare module "expect" {
+    interface Matchers<R> {
+        toHaveNoViolations(): R;
+    }
+
+    interface AsymmetricMatchers {
+        toHaveNoViolations(): void;
+    }
+}
+
+declare global {
+    namespace jest {
+        interface Matchers<R> {
+            toHaveNoViolations(): R;
+        }
+    }
+}
+
 export type ContrastLensOptions = {
     rules?: Rule[];
     includeWarnings?: boolean;
