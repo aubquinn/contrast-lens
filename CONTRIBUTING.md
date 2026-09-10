@@ -48,6 +48,14 @@ pnpm --version
     pnpm install
     ```
 
+    Install the Chromium browser used by Storybook tests:
+
+    ```bash
+    pnpm --filter test-storybook exec playwright install chromium
+    ```
+
+    On Linux, add `--with-deps` to install the required system libraries. Run the install command again after upgrading Playwright.
+
 3. Build the packages:
 
     ```bash
@@ -100,7 +108,7 @@ The workspace keeps shared tool versions in `pnpm-workspace.yaml` under `catalog
 
 TypeScript packages extend the root `tsconfig.base.json`. Keep package-specific settings such as `rootDir`, output paths, JSX, declarations, and project references in the package config.
 
-Vite configs merge `vite.config.base.ts`, and Vitest configs merge `vitest.config.base.ts`. Add only package-specific aliases, build entries, coverage, or test settings locally.
+Vite configs merge `vite.config.base.ts`, and unit-test Vitest configs merge `vitest.config.base.ts`. Storybook uses a separate browser project declared in the root `vitest.config.ts`. Add only package-specific aliases, build entries, coverage, or test settings locally.
 
 The repository's application and tooling packages use ESM where their runtime supports it and declare `"type": "module"` in those package manifests. The browser extension's manifest-loaded JavaScript remains classic script code and intentionally does not use the ESM package setting.
 
@@ -131,7 +139,11 @@ pnpm --filter @contrast-lens/engine test
 pnpm --filter @contrast-lens/storybook-addon build
 ```
 
-`pnpm test` builds once, then runs each package's `test:run` script. The standalone Jest integration `test` command also prepares its dependency. Vitest packages collect coverage; the Jest integration suite does not. CI uploads engine coverage only, and the README badge represents that package.
+`pnpm test` builds once, then runs each package's `test:run` script, including Storybook rendering and interaction assertions in headless Chromium. The standalone Jest integration `test` command also prepares its dependency. CI installs Chromium and its system libraries before running the workspace tests.
+
+Source-package coverage includes unimported `src` files and keeps the shared 80% thresholds. Declarations, type tests, stories, fixtures, and test setup are excluded. The unfinished browser extension runs its API smoke test without reporting empty coverage. Jest integration and Storybook browser tests check behavior without collecting coverage. CI uploads engine coverage only, and the README badge represents that package.
+
+Run Storybook browser tests independently with `pnpm --filter test-storybook test`, or use `pnpm --filter test-storybook test:watch` while editing. The browser project uses the stories and addon setup from `.storybook/main.ts`, including stories in `packages/test-components`; no running Storybook server is required. These tests validate story rendering and `play` assertions. The addon manager panel has its own unit tests.
 
 `pnpm typecheck` builds referenced TypeScript outputs before checking packages and the dedicated `tsconfig.tools.json`. Shared CLI tools live at the root; packages declare the libraries they import directly, including test and Storybook APIs.
 

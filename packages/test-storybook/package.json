@@ -5,6 +5,9 @@
     "type": "module",
     "scripts": {
         "typecheck": "tsc -p . --noEmit",
+        "test": "pnpm run test:run",
+        "test:run": "pnpm --workspace-root exec vitest run --project storybook",
+        "test:watch": "pnpm --workspace-root exec vitest --project storybook",
         "storybook": "node ../../scripts/dev-storybook.mjs",
         "build-storybook": "storybook build --config-dir ../../.storybook",
         "storybook:doctor": "storybook doctor --config-dir ../../.storybook"
@@ -16,9 +19,13 @@
         "react-dom": "catalog:"
     },
     "devDependencies": {
+        "@storybook/addon-vitest": "catalog:",
         "@storybook/react-vite": "catalog:",
         "@types/react": "catalog:",
         "@types/react-dom": "catalog:",
-        "storybook": "catalog:"
+        "@vitest/browser-playwright": "catalog:",
+        "playwright": "catalog:",
+        "storybook": "catalog:",
+        "vitest": "catalog:"
     }
 }

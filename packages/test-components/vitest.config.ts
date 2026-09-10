@@ -1,4 +1,4 @@
-import { coverageConfigDefaults, defineConfig, mergeConfig } from 'vitest/config';
+import { defineConfig, mergeConfig } from 'vitest/config';
 import { baseVitestConfig } from '../../vitest.config.base.js';
 
 export default defineConfig(
@@ -6,12 +6,7 @@ export default defineConfig(
         test: {
             setupFiles: ['./src/vitest.setup.ts'],
             coverage: {
-                exclude: [
-                    ...coverageConfigDefaults.exclude,
-                    '**/*.fixture.ts',
-                    '**/*.stories.tsx',
-                    'src/TestComponents.tsx',
-                ],
+                exclude: ['src/TestComponents.tsx'],
             },
         },
     }),

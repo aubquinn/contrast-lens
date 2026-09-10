@@ -68,6 +68,7 @@ React components designed to test accessibility rules and demonstrate violations
 
     ```bash
     pnpm install
+    pnpm --filter test-storybook exec playwright install chromium
     ```
 
 2. **Build all packages:**
@@ -123,14 +124,15 @@ console.log('Accessibility issues:', issues);
 
 The Contrast Lens panel will show accessibility violations automatically.
 
-The coverage badge reports the engine only. Vitest packages generate individual coverage reports; the Jest integration suite checks behavior without collecting coverage.
+The coverage badge reports the engine only. Source-package coverage includes unimported files in `src` and enforces 80% thresholds. Jest integration tests and Storybook browser tests check behavior without collecting coverage. The unfinished browser extension runs its API smoke test without reporting empty coverage.
 
 ## Development
 
 - `pnpm dev` - Build the engine and addon, then open Storybook at http://localhost:6006
 - `pnpm storybook` - Run the same development workflow as `pnpm dev`
 - `pnpm build` - Build all packages
-- `pnpm test` - Build packages and run all workspace tests
+- `pnpm test` - Build packages and run all workspace tests, including Storybook interactions in headless Chromium
+- `pnpm --filter test-storybook test` - Run Storybook rendering and interaction tests
 - `pnpm typecheck` - Build referenced declarations and type check all packages and tooling
 - `pnpm format:check` - Check supported files with Prettier
 - `pnpm clean` - Remove build output, coverage, Storybook output, and TypeScript caches; preserve installed dependencies

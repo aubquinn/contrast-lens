@@ -15,5 +15,5 @@
             "path": "../test-components/tsconfig.build.json"
         }
     ],
-    "exclude": ["node_modules", "dist", "storybook-static"]
+    "exclude": ["node_modules", "dist", "storybook-static", "vitest.config.ts"]
 }

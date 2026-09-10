@@ -29,6 +29,9 @@ jobs:
             - name: Check formatting
               run: pnpm format:check
 
+            - name: Install Chromium for Storybook tests
+              run: pnpm --filter test-storybook exec playwright install --with-deps chromium
+
             - name: Run workspace tests
               run: pnpm test
 

@@ -7,7 +7,15 @@ export const baseVitestConfig: UserConfig = {
             enabled: true,
             provider: 'v8',
             reporter: ['text', 'lcov'],
-            exclude: [...coverageConfigDefaults.exclude, '**/*.fixture.ts', '**/*.stories.tsx'],
+            include: ['src/**/*.{js,jsx,ts,tsx}'],
+            exclude: [
+                ...coverageConfigDefaults.exclude,
+                '**/*.d.ts',
+                '**/*.test-d.ts',
+                '**/*.fixture.{ts,tsx}',
+                '**/*.stories.{ts,tsx}',
+                '**/vitest.setup.{ts,tsx}',
+            ],
             thresholds: {
                 statements: 80,
                 branches: 80,
