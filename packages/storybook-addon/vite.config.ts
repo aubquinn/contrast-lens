@@ -14,9 +14,17 @@ export default defineConfig(
         build: {
             emptyOutDir: false,
             lib: {
-                entry: path.resolve(import.meta.dirname, 'src/manager.ts'),
+                // `index` is also this package's "." export (dist/index.js). tsc emits a
+                // plain transpile of it first; bundling it here overwrites that with a
+                // build that inlines `@contrast-lens/ui`, which — unlike engine/chakra — is
+                // a private, unpublished workspace package and must never appear as a bare
+                // import a real consumer's dependency resolution has to satisfy.
+                entry: {
+                    manager: path.resolve(import.meta.dirname, 'src/manager.ts'),
+                    index: path.resolve(import.meta.dirname, 'src/index.tsx'),
+                },
                 formats: ['es'],
-                fileName: () => 'manager.js',
+                fileName: (_format: string, entryName: string) => `${entryName}.js`,
             },
             rollupOptions: {
                 external: [/^storybook\//, /^@contrast-lens\/engine$/],

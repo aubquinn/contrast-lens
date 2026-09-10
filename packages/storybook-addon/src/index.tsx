@@ -1,7 +1,28 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { runAllRules } from '@contrast-lens/engine';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
-import { TabContent } from './tabContent.js';
+import { TabContent, ThemeProvider, toDisplayFinding, type ContrastLensTheme } from '@contrast-lens/ui';
+import { useTheme } from 'storybook/theming';
+
+const toContrastLensTheme = (theme: ReturnType<typeof useTheme>): ContrastLensTheme => ({
+    color: {
+        secondary: theme.color.secondary,
+        defaultText: theme.color.defaultText,
+    },
+    background: {
+        hoverable: theme.background.hoverable,
+        app: theme.background.app,
+        content: theme.background.content,
+    },
+    appBorderColor: theme.appBorderColor,
+    textMutedColor: theme.textMutedColor,
+    typography: {
+        fonts: {
+            mono: theme.typography.fonts.mono,
+            base: theme.typography.fonts.base,
+        },
+    },
+});
 
 const getStoryRootFromPreview = (): HTMLElement | null => {
     const iframe = document.getElementById('storybook-preview-iframe') as HTMLIFrameElement | null;
@@ -13,6 +34,7 @@ const getStoryRootFromPreview = (): HTMLElement | null => {
 };
 
 export const ContrastLensPanel = () => {
+    const storybookTheme = useTheme();
     const [storyRoot, setStoryRoot] = useState<HTMLElement | null>(null);
     const [previewChangeKey, setPreviewChangeKey] = useState(0);
 
@@ -59,7 +81,7 @@ export const ContrastLensPanel = () => {
         if (!storyRoot) {
             return [];
         }
-        return runAllRules(storyRoot);
+        return runAllRules(storyRoot).map((finding, index) => toDisplayFinding(finding, `${finding.ruleId}-${index}`));
     }, [storyRoot, previewChangeKey]);
 
     // filter findings into violations and warnings categories
@@ -72,7 +94,9 @@ export const ContrastLensPanel = () => {
 
     return (
         <ChakraProvider value={defaultSystem}>
-            <TabContent violations={violations} warnings={warnings} />
+            <ThemeProvider theme={toContrastLensTheme(storybookTheme)}>
+                <TabContent violations={violations} warnings={warnings} />
+            </ThemeProvider>
         </ChakraProvider>
     );
 };

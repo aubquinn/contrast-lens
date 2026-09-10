@@ -1,8 +1,6 @@
-import type { useTheme } from 'storybook/theming';
+import type { ContrastLensTheme } from './theme.js';
 
-type StorybookTheme = ReturnType<typeof useTheme>;
-
-export const createTabContentStyles = (theme: StorybookTheme) => {
+export const createTabContentStyles = (theme: ContrastLensTheme) => {
     const activeColor = theme.color.secondary;
     const inactiveColor = theme.textMutedColor;
 

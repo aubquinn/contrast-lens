@@ -1,28 +1,14 @@
-import type React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
-import type { Finding } from '@contrast-lens/engine';
+import { describe, expect, it } from 'vitest';
 import { TabContent } from './tabContent.js';
-import { themeFixture } from './theme.fixture.js';
 import { render } from './test-utils.js';
+import type { DisplayFinding } from './types.js';
 
-vi.mock('storybook/theming', () => ({
-    useTheme: () => themeFixture,
-}));
-
-vi.mock('storybook/internal/components', () => ({
-    Badge: ({ children, status }: { children: React.ReactNode; status: string }) => (
-        <span data-testid="badge" data-status={status}>
-            {children}
-        </span>
-    ),
-}));
-
-const makeFinding = (ruleId: string): Finding => {
+const makeFinding = (ruleId: string): DisplayFinding => {
     const element = document.createElement('button');
 
-    return { ruleId, severity: 'error', message: 'A finding.', element };
+    return { id: ruleId, ruleId, severity: 'error', message: 'A finding.', elementMarkup: element.outerHTML, element };
 };
 
 describe('TabContent', () => {

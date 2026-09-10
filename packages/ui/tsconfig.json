@@ -8,5 +8,5 @@
         "moduleResolution": "Bundler"
     },
     "include": ["src"],
-    "references": [{ "path": "../engine/tsconfig.build.json" }, { "path": "../ui/tsconfig.build.json" }]
+    "references": [{ "path": "../engine/tsconfig.build.json" }]
 }

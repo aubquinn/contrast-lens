@@ -18,6 +18,9 @@
     "references": [
         {
             "path": "../engine/tsconfig.build.json"
+        },
+        {
+            "path": "../ui/tsconfig.build.json"
         }
     ]
 }

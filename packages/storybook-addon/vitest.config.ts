@@ -5,9 +5,6 @@ export default defineConfig(
     mergeConfig(baseVitestConfig, {
         test: {
             setupFiles: ['./src/vitest.setup.ts'],
-            coverage: {
-                exclude: ['src/test-utils.tsx'],
-            },
         },
     }),
 );

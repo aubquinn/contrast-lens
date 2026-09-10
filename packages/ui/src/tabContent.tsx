@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
-import { Finding } from '@contrast-lens/engine';
 import { Accordion, Tabs } from '@chakra-ui/react';
-import { Badge } from 'storybook/internal/components';
-import { useTheme } from 'storybook/theming';
+import { Badge } from './badge.js';
+import { useContrastLensTheme } from './theme.js';
+import type { DisplayFinding } from './types.js';
 
 import { AccordionContent } from './accordionContent.js';
 import { createTabContentStyles } from './tabContent.styles.js';
 
 export type TabContentProps = {
-    violations: Finding[];
-    warnings: Finding[];
+    violations: DisplayFinding[];
+    warnings: DisplayFinding[];
+    onJumpToElement?: (item: DisplayFinding) => void;
+    onRemoveHighlight?: (item: DisplayFinding) => void;
 };
 
-export const TabContent = ({ violations, warnings }: TabContentProps) => {
-    const theme = useTheme();
+export const TabContent = ({ violations, warnings, onJumpToElement, onRemoveHighlight }: TabContentProps) => {
+    const theme = useContrastLensTheme();
     const styles = createTabContentStyles(theme);
     const [activeTab, setActiveTab] = useState('violations');
 
@@ -43,8 +45,16 @@ export const TabContent = ({ violations, warnings }: TabContentProps) => {
             <Tabs.Content value="violations" {...styles.content}>
                 <Accordion.Root collapsible>
                     {violations.map((item, index) => {
-                        const value = `${item.ruleId}-violation-${index}`;
-                        return <AccordionContent key={value} item={item} value={value} />;
+                        const value = `${item.id}-violation-${index}`;
+                        return (
+                            <AccordionContent
+                                key={value}
+                                item={item}
+                                value={value}
+                                onJumpToElement={onJumpToElement}
+                                onRemoveHighlight={onRemoveHighlight}
+                            />
+                        );
                     })}
                 </Accordion.Root>
             </Tabs.Content>
@@ -52,8 +62,16 @@ export const TabContent = ({ violations, warnings }: TabContentProps) => {
             <Tabs.Content value="warnings" {...styles.content}>
                 <Accordion.Root collapsible>
                     {warnings.map((item, index) => {
-                        const value = `${item.ruleId}-warning-${index}`;
-                        return <AccordionContent key={value} item={item} value={value} />;
+                        const value = `${item.id}-warning-${index}`;
+                        return (
+                            <AccordionContent
+                                key={value}
+                                item={item}
+                                value={value}
+                                onJumpToElement={onJumpToElement}
+                                onRemoveHighlight={onRemoveHighlight}
+                            />
+                        );
                     })}
                 </Accordion.Root>
             </Tabs.Content>

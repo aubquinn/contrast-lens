@@ -1,21 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Finding } from '@contrast-lens/engine';
 import { Accordion, Box, Button, Code, HStack, List, Span } from '@chakra-ui/react';
 import { EyeIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useTheme } from 'storybook/theming';
+import { useContrastLensTheme } from './theme.js';
+import { createElementOverlay } from './domHighlight.js';
+import type { DisplayFinding } from './types.js';
 
 import { createAccordionContentStyles } from './accordionContent.styles.js';
 
 export type AccordionContentProps = {
-    item: Finding;
+    item: DisplayFinding;
     value: string;
+    onJumpToElement?: (item: DisplayFinding) => void;
+    onRemoveHighlight?: (item: DisplayFinding) => void;
 };
 
 const formatRuleTitle = (ruleId: string) =>
     ruleId.replace(/[-_]+/g, ' ').replace(/^\w/, (character) => character.toUpperCase());
-
-const isElementLike = (value: unknown): value is Element =>
-    typeof value === 'object' && value !== null && 'outerHTML' in value && 'tagName' in value;
 
 const getSelector = (element: Element) => {
     const tagName = element.tagName.toLowerCase();
@@ -43,16 +43,15 @@ const getSelector = (element: Element) => {
     return tagName;
 };
 
-export const AccordionContent = ({ item, value }: AccordionContentProps) => {
-    const theme = useTheme();
+export const AccordionContent = ({ item, value, onJumpToElement, onRemoveHighlight }: AccordionContentProps) => {
+    const theme = useContrastLensTheme();
     const styles = createAccordionContentStyles(theme);
     const [isHighlighted, setIsHighlighted] = useState(false);
     const removeOverlayRef = useRef<(() => void) | null>(null);
 
-    const rawElement: unknown = item.element;
-    const domElement = isElementLike(rawElement) ? rawElement : undefined;
-
-    const elementMarkup = domElement?.outerHTML ?? String(rawElement);
+    const domElement = item.element;
+    const elementMarkup = item.elementMarkup;
+    const canHighlight = Boolean(domElement) || Boolean(onJumpToElement);
 
     const selector = domElement ? getSelector(domElement) : 'Selector unavailable';
     const [hintText, ...hintCodeLines] = item.hint?.split('\n') ?? [];
@@ -64,6 +63,12 @@ export const AccordionContent = ({ item, value }: AccordionContentProps) => {
     };
 
     const removeHighlight = () => {
+        if (onRemoveHighlight) {
+            onRemoveHighlight(item);
+            setIsHighlighted(false);
+            return;
+        }
+
         removeOverlay();
         setIsHighlighted(false);
     };
@@ -76,6 +81,12 @@ export const AccordionContent = ({ item, value }: AccordionContentProps) => {
     );
 
     const jumpToElement = () => {
+        if (onJumpToElement) {
+            onJumpToElement(item);
+            setIsHighlighted(true);
+            return;
+        }
+
         if (!domElement) {
             return;
         }
@@ -86,53 +97,7 @@ export const AccordionContent = ({ item, value }: AccordionContentProps) => {
             block: 'center',
         });
 
-        const previewDocument = domElement.ownerDocument;
-        const previewWindow = previewDocument.defaultView;
-        const overlay = previewDocument.createElement('div');
-        const overlayGap = 4;
-        const overlayBorderWidth = 4;
-        const overlayOffset = overlayGap + overlayBorderWidth;
-
-        overlay.setAttribute('data-contrast-lens-highlight', 'true');
-        Object.assign(overlay.style, {
-            position: 'fixed',
-            pointerEvents: 'none',
-            zIndex: '2147483647',
-            border: `${overlayBorderWidth}px solid red`,
-            boxSizing: 'border-box',
-            background: 'transparent',
-        });
-
-        const positionOverlay = () => {
-            if (!domElement.isConnected) {
-                removeOverlay();
-                return;
-            }
-
-            const rect = domElement.getBoundingClientRect();
-            overlay.style.top = `${rect.top - overlayOffset}px`;
-            overlay.style.left = `${rect.left - overlayOffset}px`;
-            overlay.style.width = `${rect.width + overlayOffset * 2}px`;
-            overlay.style.height = `${rect.height + overlayOffset * 2}px`;
-        };
-
-        previewDocument.body.appendChild(overlay);
-        positionOverlay();
-
-        previewWindow?.addEventListener('resize', positionOverlay);
-        previewWindow?.addEventListener('scroll', positionOverlay, true);
-
-        const resizeObserver = previewWindow?.ResizeObserver ? new previewWindow.ResizeObserver(positionOverlay) : null;
-        resizeObserver?.observe(domElement);
-
-        removeOverlayRef.current = () => {
-            previewWindow?.removeEventListener('resize', positionOverlay);
-            previewWindow?.removeEventListener('scroll', positionOverlay, true);
-            resizeObserver?.disconnect();
-            overlay.remove();
-        };
-
-        previewWindow?.requestAnimationFrame(positionOverlay);
+        removeOverlayRef.current = createElementOverlay(domElement);
         setIsHighlighted(true);
     };
 
@@ -180,7 +145,7 @@ export const AccordionContent = ({ item, value }: AccordionContentProps) => {
 
                             <HStack {...styles.actions}>
                                 <Button
-                                    disabled={!domElement}
+                                    disabled={!canHighlight}
                                     aria-pressed={isHighlighted}
                                     onClick={isHighlighted ? removeHighlight : jumpToElement}
                                     {...styles.actionButton}

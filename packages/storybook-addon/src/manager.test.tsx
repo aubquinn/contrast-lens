@@ -1,4 +1,3 @@
-import type React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { themeFixture } from './theme.fixture.js';
 
@@ -14,10 +13,6 @@ vi.mock('storybook/manager-api', () => ({
 
 vi.mock('storybook/theming', () => ({
     useTheme: () => themeFixture,
-}));
-
-vi.mock('storybook/internal/components', () => ({
-    Badge: ({ children }: { children: React.ReactNode }) => <span>{children}</span>,
 }));
 
 describe('manager', () => {

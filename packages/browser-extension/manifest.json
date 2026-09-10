@@ -3,10 +3,12 @@
     "name": "Contrast Lens",
     "version": "0.0.1",
     "description": "High contrast mode accessibility checker",
-    "permissions": ["activeTab", "scripting"],
+    "permissions": ["activeTab", "scripting", "sidePanel"],
     "action": {
-        "default_popup": "popup.html",
         "default_title": "Contrast Lens"
+    },
+    "side_panel": {
+        "default_path": "sidepanel.html"
     },
     "content_scripts": [
         {
