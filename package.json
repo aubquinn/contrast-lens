@@ -9,7 +9,7 @@
         "pnpm": "11.20.0"
     },
     "scripts": {
-        "dev": "vite",
+        "dev": "pnpm run storybook",
         "build": "pnpm --recursive --if-present run build",
         "test": "pnpm run build && pnpm --recursive --if-present run test:run",
         "typecheck": "pnpm run build:types && pnpm --recursive --if-present run typecheck && pnpm run typecheck:tools",

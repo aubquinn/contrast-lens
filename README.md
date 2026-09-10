@@ -127,6 +127,8 @@ The coverage badge reports the engine only. Vitest packages generate individual 
 
 ## Development
 
+- `pnpm dev` - Build the engine and addon, then open Storybook at http://localhost:6006
+- `pnpm storybook` - Run the same development workflow as `pnpm dev`
 - `pnpm build` - Build all packages
 - `pnpm test` - Build packages and run all workspace tests
 - `pnpm typecheck` - Build referenced declarations and type check all packages and tooling

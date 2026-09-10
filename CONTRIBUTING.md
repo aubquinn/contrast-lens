@@ -69,16 +69,16 @@ pnpm --version
 The test Storybook is the easiest way to develop and manually verify the addon and accessibility rules:
 
 ```bash
-pnpm storybook
+pnpm dev
 ```
 
 This command:
 
-1. Builds the Storybook addon.
-2. Watches the addon for changes.
-3. Starts the test Storybook at [http://localhost:6006](http://localhost:6006).
+1. Builds the engine and Storybook addon.
+2. Watches the addon bundle for changes.
+3. Opens the test Storybook at [http://localhost:6006](http://localhost:6006).
 
-Changes to the addon and stories should be reflected while the command is running. If Storybook displays an older addon build, stop the process, run `pnpm storybook` again, and refresh the browser.
+`pnpm storybook` runs the same workflow. Story and fixture changes update while Storybook is running. After changing engine rules or addon code, restart `pnpm dev` and refresh the browser: Storybook builds its manager bundle at startup, and the engine is rebuilt when the command starts.
 
 Test and demonstration stories live in `packages/test-storybook`. Reusable fixtures live in `packages/test-components`.
 
@@ -108,20 +108,21 @@ The repository's application and tooling packages use ESM where their runtime su
 
 Run these commands from the repository root:
 
-| Command                 | Purpose                                                    |
-| ----------------------- | ---------------------------------------------------------- |
-| `pnpm install`          | Install dependencies for every workspace package           |
-| `pnpm build`            | Build the engine, extension, addon, and test components    |
-| `pnpm test`             | Build packages and run all workspace tests                 |
-| `pnpm typecheck`        | Build declarations and type-check packages and tooling     |
-| `pnpm lint`             | Check JavaScript and TypeScript files with ESLint          |
-| `pnpm lint:oxlint`      | Run the fast correctness lint pass with Oxlint             |
-| `pnpm lint:fix`         | Apply safe ESLint fixes                                    |
-| `pnpm format`           | Format supported files with Prettier                       |
-| `pnpm format:check`     | Check supported files with Prettier                        |
-| `pnpm storybook`        | Build and watch the addon while running the test Storybook |
-| `pnpm build-storybook`  | Produce a static Storybook build                           |
-| `pnpm storybook:doctor` | Diagnose Storybook configuration and dependency issues     |
+| Command                 | Purpose                                                  |
+| ----------------------- | -------------------------------------------------------- |
+| `pnpm install`          | Install dependencies for every workspace package         |
+| `pnpm dev`              | Build the engine and addon, then open the test Storybook |
+| `pnpm build`            | Build the engine, extension, addon, and test components  |
+| `pnpm test`             | Build packages and run all workspace tests               |
+| `pnpm typecheck`        | Build declarations and type-check packages and tooling   |
+| `pnpm lint`             | Check JavaScript and TypeScript files with ESLint        |
+| `pnpm lint:oxlint`      | Run the fast correctness lint pass with Oxlint           |
+| `pnpm lint:fix`         | Apply safe ESLint fixes                                  |
+| `pnpm format`           | Format supported files with Prettier                     |
+| `pnpm format:check`     | Check supported files with Prettier                      |
+| `pnpm storybook`        | Run the same development workflow as `pnpm dev`          |
+| `pnpm build-storybook`  | Produce a static Storybook build                         |
+| `pnpm storybook:doctor` | Diagnose Storybook configuration and dependency issues   |
 
 You can run a script for one package with pnpm's filter option. For example:
 
