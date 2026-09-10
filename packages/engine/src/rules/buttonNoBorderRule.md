@@ -38,6 +38,16 @@ A solid border at least 2px wide passes. A transparent border preserves the bord
 <button style="border: 2px solid transparent">Submit</button>
 ```
 
+While we always encourage the use of semantic html, a [role=button] element can pass if the border conditions are met.
+
+```html
+<div role="button" style="border: 2px solid black">Submit</div>
+```
+
+```html
+<div role="button" style="border: 2px solid transparent">Submit</div>
+```
+
 ## Warnings
 
 A rendered border less than 2px wide produces a warning:
@@ -96,6 +106,10 @@ Keeping a transparent border is the simplest option. Components that remove thei
 
 ```css
 .button {
+    border: 2px solid transparent;
+}
+
+div[role='button'] {
     border: 2px solid transparent;
 }
 
