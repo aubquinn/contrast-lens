@@ -50,6 +50,9 @@ jobs:
             - name: Build Storybook
               run: pnpm build-storybook
 
+            - name: Validate packed packages in a separate consumer
+              run: pnpm test:packages
+
             - name: Upload engine coverage to Coveralls
               uses: coverallsapp/github-action@v2.3.6
               with:

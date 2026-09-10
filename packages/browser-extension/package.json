@@ -28,5 +28,6 @@
         "@vitest/coverage-v8": "catalog:",
         "jsdom": "catalog:",
         "vitest": "catalog:"
-    }
+    },
+    "private": true
 }

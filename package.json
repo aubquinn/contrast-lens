@@ -12,6 +12,10 @@
         "dev": "pnpm run storybook",
         "build": "pnpm --recursive --if-present run build",
         "test": "pnpm run build && pnpm --recursive --if-present run test:run",
+        "test:packages": "node scripts/test-packages.mjs",
+        "changeset": "changeset",
+        "release:version": "changeset version && pnpm install --lockfile-only",
+        "release": "pnpm run test:packages && changeset publish",
         "typecheck": "pnpm run build:types && pnpm --recursive --if-present run typecheck && pnpm run typecheck:tools",
         "lint": "eslint . --ext .js,.mjs,.cjs,.ts,.mts,.cts,.jsx,.tsx",
         "lint:fix": "eslint . --ext .js,.mjs,.cjs,.ts,.mts,.cts,.jsx,.tsx --fix",
@@ -27,6 +31,7 @@
         "typecheck:tools": "tsc -p tsconfig.tools.json"
     },
     "devDependencies": {
+        "@changesets/cli": "^3.0.2",
         "@contrast-lens/storybook-addon": "workspace:*",
         "@eslint/js": "^10.0.1",
         "@storybook/addon-a11y": "catalog:",

@@ -10,17 +10,44 @@
     },
     "types": "dist/index.d.ts",
     "files": [
-        "dist"
+        "dist/**/*.js",
+        "dist/**/*.js.map",
+        "dist/**/*.d.ts",
+        "README.md",
+        "LICENSE",
+        "CHANGELOG.md"
     ],
     "scripts": {
         "build": "tsc -b tsconfig.build.json",
         "typecheck": "tsc -p . --noEmit",
         "test": "pnpm run test:run",
-        "test:run": "vitest run"
+        "test:run": "vitest run",
+        "prepack": "node ../../scripts/prepack.mjs"
     },
     "devDependencies": {
         "@vitest/coverage-v8": "catalog:",
         "jsdom": "catalog:",
         "vitest": "catalog:"
+    },
+    "description": "DOM accessibility rules for Windows High Contrast and forced-colors mode.",
+    "keywords": [
+        "accessibility",
+        "high-contrast",
+        "forced-colors",
+        "a11y"
+    ],
+    "license": "MIT",
+    "author": "Aubrey Quinn",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/aubquinn/contrast-lens.git",
+        "directory": "packages/engine"
+    },
+    "homepage": "https://github.com/aubquinn/contrast-lens/tree/main/packages/engine#readme",
+    "bugs": {
+        "url": "https://github.com/aubquinn/contrast-lens/issues"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

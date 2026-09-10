@@ -3,7 +3,9 @@
     "compilerOptions": {
         "noEmit": false,
         "outDir": "dist",
-        "tsBuildInfoFile": "dist/.tsbuildinfo"
+        "tsBuildInfoFile": "dist/.tsbuildinfo",
+        "declarationMap": false,
+        "inlineSources": true
     },
     "exclude": [
         "**/*.test.ts",

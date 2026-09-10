@@ -20,13 +20,19 @@
     },
     "types": "dist/index.d.ts",
     "files": [
-        "dist"
+        "dist/**/*.js",
+        "dist/**/*.js.map",
+        "dist/**/*.d.ts",
+        "README.md",
+        "LICENSE",
+        "CHANGELOG.md"
     ],
     "scripts": {
         "build": "tsc -b tsconfig.build.json",
         "typecheck": "tsc -p . --noEmit",
         "test": "pnpm run test:run",
-        "test:run": "vitest run"
+        "test:run": "vitest run",
+        "prepack": "node ../../scripts/prepack.mjs"
     },
     "dependencies": {
         "@contrast-lens/engine": "workspace:*"
@@ -40,5 +46,27 @@
         "@vitest/coverage-v8": "catalog:",
         "jsdom": "catalog:",
         "vitest": "catalog:"
+    },
+    "description": "Jest matchers for Contrast Lens high-contrast accessibility rules.",
+    "keywords": [
+        "jest",
+        "accessibility",
+        "high-contrast",
+        "forced-colors",
+        "a11y"
+    ],
+    "license": "MIT",
+    "author": "Aubrey Quinn",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/aubquinn/contrast-lens.git",
+        "directory": "packages/jest"
+    },
+    "homepage": "https://github.com/aubquinn/contrast-lens/tree/main/packages/jest#readme",
+    "bugs": {
+        "url": "https://github.com/aubquinn/contrast-lens/issues"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

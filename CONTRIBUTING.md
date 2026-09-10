@@ -182,6 +182,8 @@ Rebuild and reload the unpacked extension after making changes.
 
 ## Submitting a change
 
+Changes to the three public npm packages should include a release note created with `pnpm changeset`. Run `pnpm test:packages` to validate their packed archives in a separate consumer. See [RELEASING.md](./RELEASING.md) for the release PR workflow and registry setup.
+
 Create a focused branch from `main`, make your changes, and include tests and documentation where appropriate. Before opening a pull request, run:
 
 ```bash

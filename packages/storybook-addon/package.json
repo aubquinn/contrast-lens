@@ -12,7 +12,12 @@
     },
     "types": "dist/index.d.ts",
     "files": [
-        "dist",
+        "dist/**/*.js",
+        "dist/**/*.js.map",
+        "dist/**/*.d.ts",
+        "README.md",
+        "LICENSE",
+        "CHANGELOG.md",
         "preset.js"
     ],
     "scripts": {
@@ -20,7 +25,8 @@
         "dev": "vite build --config vite.config.ts --watch",
         "typecheck": "tsc -p . --noEmit",
         "test": "pnpm run test:run",
-        "test:run": "vitest run"
+        "test:run": "vitest run",
+        "prepack": "node ../../scripts/prepack.mjs"
     },
     "dependencies": {
         "@chakra-ui/react": "catalog:",
@@ -43,5 +49,27 @@
     },
     "peerDependencies": {
         "storybook": "^10.5.8"
+    },
+    "description": "Storybook addon for inspecting high-contrast accessibility findings.",
+    "keywords": [
+        "storybook-addon",
+        "storybook",
+        "accessibility",
+        "high-contrast",
+        "forced-colors"
+    ],
+    "license": "MIT",
+    "author": "Aubrey Quinn",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/aubquinn/contrast-lens.git",
+        "directory": "packages/storybook-addon"
+    },
+    "homepage": "https://github.com/aubquinn/contrast-lens/tree/main/packages/storybook-addon#readme",
+    "bugs": {
+        "url": "https://github.com/aubquinn/contrast-lens/issues"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

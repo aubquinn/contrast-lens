@@ -41,3 +41,7 @@ expect(contrastLens(container, { includeWarnings: false })).toHaveNoViolations()
 ```
 
 The matcher reports the rule ID, severity, message, hint, and element markup for each finding.
+
+This package uses ES modules and supports Jest 29 or later. Configure your Jest project for ESM; see the [working integration example](https://github.com/aubquinn/contrast-lens/tree/main/packages/test-jest).
+
+Licensed under the MIT license; see [LICENSE](./LICENSE).
