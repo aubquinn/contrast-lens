@@ -16,6 +16,13 @@ import {
     BadButtonInset,
     BadButtonOutset,
     BadButtonHidden,
+    GoodLink,
+    GoodLinkCustomColor,
+    GoodLinkForcedColorsSystemColor,
+    LinkWithoutHref,
+    BadLinkForcedColorAdjustNone,
+    BadLinkForcedColorAdjustNoneScoped,
+    BadLinkInheritsForcedColorAdjustNone,
 } from './index.js';
 
 export const TestComponents: React.FC = () => (
@@ -81,6 +88,27 @@ export const TestComponents: React.FC = () => (
             value="Bad Input Button (No Border)"
             onClick={() => alert('Bad input button clicked!')}
         />
+
+        <h2>Good Links (Should Pass)</h2>
+        <GoodLink />
+        <br />
+        <br />
+        <GoodLinkCustomColor />
+        <br />
+        <br />
+        <GoodLinkForcedColorsSystemColor />
+        <br />
+        <br />
+        <LinkWithoutHref />
+
+        <h2>Bad Links (Should Fail)</h2>
+        <BadLinkForcedColorAdjustNone />
+        <br />
+        <br />
+        <BadLinkForcedColorAdjustNoneScoped />
+        <br />
+        <br />
+        <BadLinkInheritsForcedColorAdjustNone />
     </div>
 );
 

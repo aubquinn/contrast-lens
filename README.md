@@ -19,6 +19,7 @@ The heart of Contrast Lens - contains accessibility rules and evaluation logic.
 **Rules Included:**
 
 - `buttonNoBorderRule` - Buttons and custom `role="button"` elements must have visible borders (error)
+- `linkNoForcedColoursOptOutRule` - Links must not opt out of the browser's native Forced Colors treatment via `forced-color-adjust: none` (error)
 
 ### Browser Extension (`packages/browser-extension`)
 
