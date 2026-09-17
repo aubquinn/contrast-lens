@@ -345,3 +345,55 @@ export const BadButtonAriaDisabledNoBorder: React.FC = () => (
         </StateButton>
     </>
 );
+
+export const GoodLink: React.FC = () => <a href="/settings">Good Link</a>;
+
+export const GoodLinkCustomColor: React.FC = () => (
+    <a href="/settings" style={{ color: '#0057d8' }}>
+        Good Link (custom color)
+    </a>
+);
+
+export const GoodLinkForcedColorsSystemColor: React.FC = () => (
+    <>
+        <style>{`
+            @media (forced-colors: active) {
+                .good-link-forced-colors {
+                    color: LinkText;
+                }
+            }
+        `}</style>
+        <a className="good-link-forced-colors" href="/settings">
+            Good Link (forced-colors system color)
+        </a>
+    </>
+);
+
+export const LinkWithoutHref: React.FC = () => <a style={{ forcedColorAdjust: 'none' }}>Link Without Href</a>;
+
+export const BadLinkForcedColorAdjustNone: React.FC = () => (
+    <a href="/settings" style={{ forcedColorAdjust: 'none' }}>
+        Bad Link (forced-color-adjust: none)
+    </a>
+);
+
+export const BadLinkForcedColorAdjustNoneScoped: React.FC = () => (
+    <>
+        <style>{`
+            @media (forced-colors: active) {
+                .bad-link-forced-colors-scoped {
+                    forced-color-adjust: none;
+                }
+            }
+        `}</style>
+        <a className="bad-link-forced-colors-scoped" href="/settings">
+            Bad Link (forced-color-adjust: none in forced-colors media query)
+        </a>
+    </>
+);
+
+export const BadLinkInheritsForcedColorAdjustNone: React.FC = () => (
+    <nav style={{ forcedColorAdjust: 'none' }}>
+        <a href="/settings">Bad Link (inherits forced-color-adjust: none)</a>
+    </nav>
+);

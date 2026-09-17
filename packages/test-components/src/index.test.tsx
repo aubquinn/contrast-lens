@@ -24,6 +24,13 @@ import {
     BadButtonFocusVisibleNoBorder,
     BadButtonDisabledNoBorder,
     BadButtonAriaDisabledNoBorder,
+    GoodLink,
+    GoodLinkCustomColor,
+    GoodLinkForcedColorsSystemColor,
+    LinkWithoutHref,
+    BadLinkForcedColorAdjustNone,
+    BadLinkForcedColorAdjustNoneScoped,
+    BadLinkInheritsForcedColorAdjustNone,
 } from './index.js';
 
 describe('button fixtures', () => {
@@ -94,5 +101,66 @@ describe('button fixtures', () => {
         expect(screen.getByText('Safe interaction states')).toBeEnabled();
         expect(screen.getByText('Border removed when disabled')).toBeDisabled();
         expect(screen.getByText('Border removed when aria-disabled')).toHaveAttribute('aria-disabled', 'true');
+    });
+});
+
+describe('link fixtures', () => {
+    it('renders a good link with href and no forced-color-adjust override', () => {
+        render(<GoodLink />);
+
+        const link = screen.getByRole('link', { name: 'Good Link' });
+
+        expect(link).toHaveAttribute('href', '/settings');
+        expect(link.style.forcedColorAdjust).toBe('');
+    });
+
+    it('renders a good link that only customizes its normal-mode color', () => {
+        render(<GoodLinkCustomColor />);
+
+        expect(screen.getByRole('link', { name: 'Good Link (custom color)' }).style.color).toBe('rgb(0, 87, 216)');
+    });
+
+    it('renders a good link that sets a system color inside a forced-colors media query', () => {
+        render(<GoodLinkForcedColorsSystemColor />);
+
+        const link = screen.getByRole('link', { name: 'Good Link (forced-colors system color)' });
+
+        expect(link).toHaveClass('good-link-forced-colors');
+        expect(link.style.forcedColorAdjust).toBe('');
+    });
+
+    it('renders an anchor without an href, which is not exposed as a link', () => {
+        render(<LinkWithoutHref />);
+
+        expect(screen.queryByRole('link')).not.toBeInTheDocument();
+        expect(screen.getByText('Link Without Href')).not.toHaveAttribute('href');
+    });
+
+    it('renders a bad link with an inline forced-color-adjust: none', () => {
+        render(<BadLinkForcedColorAdjustNone />);
+
+        expect(screen.getByRole('link', { name: 'Bad Link (forced-color-adjust: none)' }).style.forcedColorAdjust).toBe(
+            'none',
+        );
+    });
+
+    it('renders a bad link whose opt-out is scoped inside a forced-colors media query', () => {
+        render(<BadLinkForcedColorAdjustNoneScoped />);
+
+        const link = screen.getByRole('link', {
+            name: 'Bad Link (forced-color-adjust: none in forced-colors media query)',
+        });
+
+        expect(link).toHaveClass('bad-link-forced-colors-scoped');
+        expect(link.style.forcedColorAdjust).toBe('');
+    });
+
+    it('renders a bad link that inherits forced-color-adjust: none from an ancestor', () => {
+        render(<BadLinkInheritsForcedColorAdjustNone />);
+
+        const link = screen.getByRole('link', { name: 'Bad Link (inherits forced-color-adjust: none)' });
+
+        expect(link.style.forcedColorAdjust).toBe('');
+        expect(link.closest('nav')).toHaveStyle({ forcedColorAdjust: 'none' });
     });
 });
