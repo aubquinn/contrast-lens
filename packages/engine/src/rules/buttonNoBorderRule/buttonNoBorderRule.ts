@@ -1,4 +1,4 @@
-import { Severity, type Finding, type Rule, type RuleContext } from '../core/types.js';
+import { Severity, type Finding, type Rule, type RuleContext } from '../../core/types.js';
 import { getBorderRemovingStates } from './helpers/getBorderRemovingStates.js';
 import { getBorderStyleSeverity } from './helpers/getBorderStyleSeverity.js';
 import { getBorderWidthSeverity } from './helpers/getBorderWidthSeverity.js';

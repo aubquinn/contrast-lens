@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { runRules } from '../core/index.js';
+import { runRules } from '../../core/index.js';
 import { buttonNoBorderRule } from './buttonNoBorderRule.js';
 
 describe('buttonNoBorderRule', () => {
